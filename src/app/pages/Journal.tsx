@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Calendar, MapPin, Heart, Smile, Meh } from "lucide-react";
+import { SafeImage } from "../components/SafeImage";
 
 const entries = [
   {
@@ -102,19 +103,19 @@ const getMoodColor = (mood: string) => {
 export default function Journal() {
   return (
     <div className="min-h-screen bg-[#f5f5f7] text-black font-sans pb-32">
-      <div className="p-8 lg:p-16 max-w-5xl mx-auto">
+      <div className="p-6 md:p-8 lg:p-16 max-w-5xl mx-auto">
         
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-16"
+          className="mb-10 md:mb-16"
         >
-          <h1 className="text-6xl font-bold tracking-tight mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-2 md:mb-4">
             Journal
           </h1>
-          <p className="text-2xl text-black/60 font-medium">Your story, written through time.</p>
+          <p className="text-xl md:text-2xl text-black/60 font-medium">Your story, written through time.</p>
         </motion.div>
 
         {/* Timeline by Year */}
@@ -127,7 +128,7 @@ export default function Journal() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="text-4xl font-bold tracking-tight text-black/30 mb-8 ml-2"
+                  className="text-3xl md:text-4xl font-bold tracking-tight text-black/30 mb-6 md:mb-8 ml-2"
                 >
                   {year}
                 </motion.h2>
@@ -139,14 +140,13 @@ export default function Journal() {
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-50px" }}
-                      transition={{ delay: index * 0.1, duration: 0.6 }}
                       whileHover={{ scale: 1.01, y: -5 }}
-                      className="bg-white rounded-[32px] overflow-hidden border border-black/5 cursor-pointer shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] relative before:absolute before:left-[-27px] lg:before:left-[-31px] before:top-12 before:w-4 before:h-4 before:bg-white before:border-4 before:border-[#f5f5f7] before:rounded-full before:z-10"
+                      className="bg-white rounded-[24px] md:rounded-[32px] overflow-hidden border border-black/5 cursor-pointer shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] relative before:absolute before:left-[-27px] lg:before:left-[-31px] before:top-12 before:w-4 before:h-4 before:bg-white before:border-4 before:border-[#f5f5f7] before:rounded-full before:z-10"
                     >
                       <div className="flex flex-col md:flex-row">
                         {/* Image */}
                         <div className="md:w-2/5 aspect-[4/3] md:aspect-auto relative overflow-hidden bg-black/5">
-                          <img
+                          <SafeImage
                             src={entry.image}
                             alt={entry.title}
                             className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
@@ -163,8 +163,8 @@ export default function Journal() {
                         </div>
 
                         {/* Content */}
-                        <div className="md:w-3/5 p-8 flex flex-col justify-center">
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-black/50 font-medium mb-4">
+                        <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-black/50 font-medium mb-3 md:mb-4">
                             <div className="flex items-center gap-1.5">
                               <Calendar className="w-4 h-4" />
                               <span className="text-sm">{entry.date}</span>
@@ -178,11 +178,11 @@ export default function Journal() {
                             </div>
                           </div>
 
-                          <h2 className="text-3xl mb-4 tracking-tight font-bold text-black">
+                          <h2 className="text-2xl md:text-3xl mb-3 md:mb-4 tracking-tight font-bold text-black">
                             {entry.title}
                           </h2>
 
-                          <p className="text-lg leading-relaxed text-black/60 mb-6 font-medium">
+                          <p className="text-base md:text-lg leading-relaxed text-black/60 mb-6 font-medium">
                             {entry.excerpt}
                           </p>
 
@@ -208,10 +208,10 @@ export default function Journal() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="mt-24 relative rounded-[40px] overflow-hidden aspect-[21/9] flex items-center justify-center text-center shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)]"
+          className="mt-16 md:mt-24 relative rounded-[32px] md:rounded-[40px] overflow-hidden aspect-square md:aspect-[21/9] flex items-center justify-center text-center shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)]"
         >
           {/* Background Image */}
-          <img 
+          <SafeImage 
             src="https://images.unsplash.com/photo-1476820865390-c52aeebb9891?q=80&w=2000&auto=format&fit=crop" 
             alt="Story Continues" 
             className="absolute inset-0 w-full h-full object-cover"
@@ -219,11 +219,11 @@ export default function Journal() {
           {/* Light gradient overlay for text legibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/80" />
           
-          <div className="relative z-10 p-12 text-white max-w-4xl">
-            <h3 className="text-5xl lg:text-7xl font-bold tracking-tight mb-6 drop-shadow-lg">
+          <div className="relative z-10 p-8 md:p-12 text-white max-w-4xl">
+            <h3 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-4 md:mb-6 drop-shadow-lg">
               Every Memory Has A Story
             </h3>
-            <p className="text-2xl text-white/90 font-medium drop-shadow-md">
+            <p className="text-xl md:text-2xl text-white/90 font-medium drop-shadow-md">
               The moments we capture become the stories we remember.
             </p>
           </div>

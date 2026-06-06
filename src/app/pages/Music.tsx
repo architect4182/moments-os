@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Play, Music as MusicIcon } from "lucide-react";
+import { SafeImage } from "../components/SafeImage";
 
 const definingSongs = [
   {
@@ -70,7 +71,7 @@ const albums = [
 
 export default function Music() {
   return (
-    <div className="p-12 max-w-7xl mx-auto">
+    <div className="p-6 md:p-12 max-w-7xl mx-auto mb-24 md:mb-0">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -90,10 +91,10 @@ export default function Music() {
         transition={{ delay: 0.1 }}
         className="mb-16"
       >
-        <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
+        <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 tracking-tight" style={{ fontWeight: 600 }}>
           Songs That Defined Your Memories
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {definingSongs.map((song, index) => (
             <motion.div
               key={index}
@@ -107,7 +108,7 @@ export default function Music() {
               }}
             >
               <div className="aspect-square rounded-2xl overflow-hidden mb-5 relative shrink-0">
-                <img
+                <SafeImage
                   src={song.cover}
                   alt={song.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -147,10 +148,10 @@ export default function Music() {
         transition={{ delay: 0.2 }}
         className="mb-16"
       >
-        <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
+        <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 tracking-tight" style={{ fontWeight: 600 }}>
           Albums
         </h2>
-        <div className="grid grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 overflow-x-auto pb-4 md:pb-0 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {albums.map((album, index) => (
             <motion.div
               key={index}
@@ -158,10 +159,10 @@ export default function Music() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 + index * 0.05 }}
               whileHover={{ scale: 1.1, rotate: 2 }}
-              className="cursor-pointer group"
+              className="cursor-pointer group min-w-[120px] md:min-w-0 snap-start"
             >
               <div className="aspect-square rounded-2xl overflow-hidden mb-3 shadow-lg">
-                <img
+                <SafeImage
                   src={album.cover}
                   alt={album.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -182,10 +183,10 @@ export default function Music() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
-        <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
+        <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 tracking-tight" style={{ fontWeight: 600 }}>
           Memory Soundtracks
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {playlists.map((playlist, index) => (
             <motion.div
               key={index}
@@ -193,13 +194,13 @@ export default function Music() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-6 bg-white/60 backdrop-blur-xl rounded-[32px] p-6 border border-white/60 cursor-pointer group"
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 bg-white/60 backdrop-blur-xl rounded-[24px] md:rounded-[32px] p-5 md:p-6 border border-white/60 cursor-pointer group"
               style={{
                 boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <div className="w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0 relative">
-                <img
+              <div className="w-full sm:w-32 h-48 sm:h-32 rounded-2xl overflow-hidden flex-shrink-0 relative">
+                <SafeImage
                   src={playlist.cover}
                   alt={playlist.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -214,11 +215,11 @@ export default function Music() {
                   </motion.div>
                 </div>
               </div>
-              <div className="flex-1">
-                <h3 className="text-2xl mb-2 tracking-tight" style={{ fontWeight: 600 }}>
+              <div className="flex-1 w-full sm:w-auto">
+                <h3 className="text-xl md:text-2xl mb-1 md:mb-2 tracking-tight" style={{ fontWeight: 600 }}>
                   {playlist.name}
                 </h3>
-                <div className="flex gap-6 text-black/60">
+                <div className="flex flex-wrap gap-4 md:gap-6 text-black/60 text-sm md:text-base">
                   <div className="flex items-center gap-2">
                     <MusicIcon className="w-4 h-4" />
                     <span>{playlist.songs} songs</span>

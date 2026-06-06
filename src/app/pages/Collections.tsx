@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Calendar, Image } from "lucide-react";
+import { SafeImage } from "../components/SafeImage";
 
 const collections = [
   {
@@ -79,18 +80,18 @@ const collections = [
 export default function Collections() {
   return (
     <div className="min-h-screen bg-[#f5f5f7] text-black font-sans pb-32">
-      <div className="p-8 lg:p-16 max-w-7xl mx-auto">
+      <div className="p-6 md:p-8 lg:p-16 max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-16"
+          className="mb-10 md:mb-16"
         >
-          <h1 className="text-6xl font-bold tracking-tight mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-2 md:mb-4">
             Collections
           </h1>
-          <p className="text-2xl text-black/60 font-medium">Curated albums of your favorite moments.</p>
+          <p className="text-xl md:text-2xl text-black/60 font-medium">Curated albums of your favorite moments.</p>
         </motion.div>
 
         {/* Collections Grid */}
@@ -108,7 +109,7 @@ export default function Collections() {
                   isLarge ? "md:col-span-2 aspect-[21/9]" : "aspect-[4/3]"
                 }`}
               >
-                <img
+                <SafeImage
                   src={collection.cover}
                   alt={collection.name}
                   className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 group-hover:brightness-110 opacity-90"
@@ -126,13 +127,13 @@ export default function Collections() {
                   >
                     <h2
                       className={`${
-                        isLarge ? "text-5xl" : "text-3xl"
+                        isLarge ? "text-4xl md:text-5xl" : "text-3xl"
                       } mb-2 tracking-tight font-bold drop-shadow-md`}
                     >
                       {collection.name}
                     </h2>
                     
-                    <p className="text-white/90 text-lg font-medium mb-4 drop-shadow-sm max-w-lg">
+                    <p className="text-white/90 text-base md:text-lg font-medium mb-4 drop-shadow-sm max-w-lg">
                       {collection.description}
                     </p>
 
@@ -163,7 +164,7 @@ export default function Collections() {
           className="mt-24 relative rounded-[40px] overflow-hidden aspect-[21/9] flex items-center justify-center text-center shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)]"
         >
           {/* Background Image */}
-          <img 
+          <SafeImage 
             src="https://images.unsplash.com/photo-1476820865390-c52aeebb9891?q=80&w=2000&auto=format&fit=crop" 
             alt="Story Continues" 
             className="absolute inset-0 w-full h-full object-cover"
@@ -171,16 +172,16 @@ export default function Collections() {
           {/* Light gradient overlay for text legibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/80" />
           
-          <div className="relative z-10 p-12 text-white max-w-4xl">
-            <h3 className="text-5xl lg:text-7xl font-bold tracking-tight mb-6 drop-shadow-lg">
+          <div className="relative z-10 p-8 md:p-12 text-white max-w-4xl">
+            <h3 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-4 md:mb-6 drop-shadow-lg">
               Your Story Continues
             </h3>
-            <p className="text-2xl text-white/80 font-medium mb-12 drop-shadow-md">
+            <p className="text-xl md:text-2xl text-white/80 font-medium mb-8 md:mb-12 drop-shadow-md">
               Every memory becomes part of a larger story.
             </p>
             
             {/* Stats Row */}
-            <div className="flex flex-wrap justify-center gap-8 lg:gap-16 text-white">
+            <div className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-6 md:gap-8 lg:gap-16 text-white">
               <div className="flex flex-col items-center">
                 <span className="text-4xl lg:text-5xl font-bold mb-2">89</span>
                 <span className="text-sm font-bold uppercase tracking-widest text-white/60">Collections</span>

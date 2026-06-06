@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useNavigate, useParams } from "react-router";
+import { SafeImage } from "../components/SafeImage";
 import { ArrowLeft, MapPin, Calendar, Users, Music, Heart } from "lucide-react";
 import { Button } from "../components/ui/button";
 
@@ -68,9 +69,9 @@ export default function MemoryDetail() {
         initial={{ opacity: 0, scale: 1.1 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative h-[70vh] overflow-hidden"
+        className="relative h-[50vh] md:h-[70vh] overflow-hidden"
       >
-        <img
+        <SafeImage
           src={memoryData.image}
           alt={memoryData.title}
           className="w-full h-full object-cover"
@@ -78,22 +79,22 @@ export default function MemoryDetail() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#f5f5f7] via-transparent to-transparent" />
 
         {/* Hero Content */}
-        <div className="absolute bottom-12 left-12 right-12 text-white">
+        <div className="absolute bottom-8 left-6 right-6 md:bottom-12 md:left-12 md:right-12 text-white">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <h1 className="text-6xl mb-4 tracking-tight" style={{ fontWeight: 600 }}>
+            <h1 className="text-4xl md:text-6xl mb-4 tracking-tight" style={{ fontWeight: 600 }}>
               {memoryData.title}
             </h1>
-            <div className="flex gap-8 text-lg text-white/90">
+            <div className="flex flex-col md:flex-row gap-2 md:gap-8 text-base md:text-lg text-white/90">
               <div className="flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
+                <Calendar className="w-4 h-4 md:w-5 md:h-5" />
                 <span>{memoryData.date}</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
+                <MapPin className="w-4 h-4 md:w-5 md:h-5" />
                 <span>{memoryData.location}</span>
               </div>
             </div>
@@ -102,18 +103,18 @@ export default function MemoryDetail() {
       </motion.div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-12 py-12">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 py-8 md:py-12">
         {/* Description */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="mb-12"
+          className="mb-10 md:mb-12"
         >
-          <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
+          <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 tracking-tight" style={{ fontWeight: 600 }}>
             Journal Entry
           </h2>
-          <p className="text-xl leading-relaxed text-black/70">
+          <p className="text-lg md:text-xl leading-relaxed text-black/70">
             {memoryData.description}
           </p>
         </motion.div>
@@ -123,12 +124,12 @@ export default function MemoryDetail() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mb-12"
+          className="mb-10 md:mb-12"
         >
-          <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
+          <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 tracking-tight" style={{ fontWeight: 600 }}>
             People
           </h2>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-4 md:gap-6">
             {memoryData.people.map((person, index) => (
               <motion.div
                 key={index}
@@ -139,7 +140,7 @@ export default function MemoryDetail() {
                 className="flex flex-col items-center cursor-pointer"
               >
                 <div className="w-24 h-24 rounded-full overflow-hidden mb-3 border-4 border-white/60">
-                  <img
+                  <SafeImage
                     src={person.image}
                     alt={person.name}
                     className="w-full h-full object-cover"
@@ -158,20 +159,20 @@ export default function MemoryDetail() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="mb-12"
+          className="mb-10 md:mb-12"
         >
-          <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
+          <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 tracking-tight" style={{ fontWeight: 600 }}>
             Music
           </h2>
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-6 bg-white/60 backdrop-blur-xl border border-white/60 rounded-[32px] p-6 cursor-pointer"
+            className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 bg-white/60 backdrop-blur-xl border border-white/60 rounded-[24px] md:rounded-[32px] p-5 md:p-6 cursor-pointer"
             style={{
               boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
             }}
           >
             <div className="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0">
-              <img
+              <SafeImage
                 src={memoryData.music.cover}
                 alt={memoryData.music.title}
                 className="w-full h-full object-cover"
@@ -193,10 +194,10 @@ export default function MemoryDetail() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
         >
-          <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
+          <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 tracking-tight" style={{ fontWeight: 600 }}>
             Related Memories
           </h2>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {memoryData.relatedMemories.map((memory, index) => (
               <motion.div
                 key={memory.id}
@@ -210,7 +211,7 @@ export default function MemoryDetail() {
                   boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <img
+                <SafeImage
                   src={memory.image}
                   alt={memory.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

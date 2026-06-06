@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { MapPin, Globe, Map, ChevronRight, Calendar } from "lucide-react";
+import { SafeImage } from "../components/SafeImage";
 
 // Mock Data
 const places = [
@@ -136,9 +137,9 @@ export default function Places() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center flex flex-col items-center"
         >
-          <h1 className="text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-black">Places</h1>
-          <p className="text-2xl text-black/60 font-medium mb-6">Explore your memories around the world.</p>
-          <div className="inline-flex items-center gap-4 bg-white/60 backdrop-blur-xl px-6 py-3 rounded-full border border-black/5 shadow-sm text-lg font-medium text-black/80">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-black">Places</h1>
+          <p className="text-xl md:text-2xl text-black/60 font-medium mb-6">Explore your memories around the world.</p>
+          <div className="inline-flex flex-wrap justify-center items-center gap-2 md:gap-4 bg-white/60 backdrop-blur-xl px-6 py-3 rounded-[24px] md:rounded-full border border-black/5 shadow-sm text-base md:text-lg font-medium text-black/80">
             <span>7 Countries</span>
             <span className="w-1.5 h-1.5 rounded-full bg-black/20" />
             <span>53 Cities</span>
@@ -151,12 +152,12 @@ export default function Places() {
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12 flex flex-col gap-12">
         
         {/* Interactive Map & Details Panel Container */}
-        <div className="relative h-[600px] lg:h-[700px] w-full flex gap-6">
+        <div className="relative min-h-[500px] lg:h-[700px] w-full flex flex-col lg:flex-row gap-6">
           
           {/* Main Map Area */}
           <motion.div 
             layout
-            className={`relative flex-1 bg-[#e8eaed] rounded-[40px] overflow-hidden border border-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-all duration-1000 ${
+            className={`relative flex-1 min-h-[400px] lg:min-h-0 bg-[#e8eaed] rounded-[32px] lg:rounded-[40px] overflow-hidden border border-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-all duration-1000 ${
               isGlobeView ? "rounded-full aspect-square max-w-[700px] mx-auto shadow-[inset_-20px_-20px_60px_rgba(0,0,0,0.1),0_30px_60px_rgba(0,0,0,0.2)]" : ""
             }`}
           >
@@ -284,11 +285,11 @@ export default function Places() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="w-full lg:w-[400px] shrink-0 bg-white rounded-[40px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-black/5 overflow-hidden flex flex-col h-full"
+                className="w-full lg:w-[400px] shrink-0 bg-white rounded-[32px] lg:rounded-[40px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-black/5 overflow-hidden flex flex-col lg:h-full max-h-[600px] lg:max-h-none"
               >
                 {/* Cover Image */}
                 <div className="relative h-64 shrink-0">
-                  <img src={selectedPlace.image} alt={selectedPlace.name} className="w-full h-full object-cover" />
+                  <SafeImage src={selectedPlace.image} alt={selectedPlace.name} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
                     <h2 className="text-4xl font-bold tracking-tight mb-1 drop-shadow-md">{selectedPlace.name}</h2>
@@ -356,21 +357,21 @@ export default function Places() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mt-12"
         >
-          <div className="flex justify-between items-end mb-8 pr-2">
-            <h2 className="text-3xl font-semibold tracking-tight text-black">Travel Collections</h2>
-            <button className="text-black/50 hover:text-black flex items-center gap-1 transition-colors font-medium">
-              View All <ChevronRight className="w-5 h-5" />
+          <div className="flex justify-between items-end mb-6 md:mb-8 pr-2">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-black">Travel Collections</h2>
+            <button className="text-black/50 hover:text-black flex items-center gap-1 transition-colors font-medium text-sm md:text-base">
+              View All <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {travelCollections.map((collection, idx) => (
               <motion.div
                 key={idx}
                 whileHover={{ scale: 1.02 }}
                 className="relative aspect-[3/4] lg:aspect-[4/5] rounded-[32px] overflow-hidden cursor-pointer group shadow-[0_15px_35px_-10px_rgba(0,0,0,0.1)] border border-white/60"
               >
-                <img src={collection.image} alt={collection.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                <SafeImage src={collection.image} alt={collection.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
                 <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
@@ -393,11 +394,11 @@ export default function Places() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mt-12 overflow-hidden"
         >
-          <div className="flex justify-between items-end mb-8 pr-2">
-            <h2 className="text-3xl font-semibold tracking-tight text-black">Recently Visited</h2>
+          <div className="flex justify-between items-end mb-6 md:mb-8 pr-2">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-black">Recently Visited</h2>
           </div>
           
-          <div className="flex gap-6 overflow-x-auto pb-12 pt-4 -mt-4 px-4 -mx-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 md:pb-12 pt-4 -mt-4 px-0 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {places.slice().reverse().map((place, idx) => (
               <motion.div
                 key={idx}
@@ -410,7 +411,7 @@ export default function Places() {
                 className="relative min-w-[280px] lg:min-w-[320px] bg-white rounded-[32px] p-4 snap-start cursor-pointer group shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] border border-black/5"
               >
                 <div className="aspect-[16/10] rounded-[24px] overflow-hidden mb-4">
-                  <img src={place.image} alt={place.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <SafeImage src={place.image} alt={place.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="px-2 pb-2">
                   <h3 className="text-xl font-bold text-black mb-1">{place.name}</h3>

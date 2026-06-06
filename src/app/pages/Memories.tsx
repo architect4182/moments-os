@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { MapPin, Users } from "lucide-react";
+import { SafeImage } from "../components/SafeImage";
 
 const years = ["2026", "2025", "2024", "2023", "2022"];
 const filters = ["All", "Travel", "People", "Family", "Music", "Places", "Favorites"];
@@ -106,7 +107,7 @@ function MemoryCard({ memory, onClick }: { memory: any, onClick: () => void }) {
       onClick={onClick}
       className={`relative rounded-[32px] overflow-hidden cursor-pointer bg-white/60 backdrop-blur-xl border border-white/60 group shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] ${memory.aspect}`}
     >
-      <img
+      <SafeImage
         src={memory.image}
         alt={memory.title}
         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -189,7 +190,7 @@ export default function Memories() {
           onClick={() => navigate(`/app/memories/${featuredMemory.id}`)}
           className="relative w-full lg:w-[75%] h-[400px] lg:h-[500px] rounded-[40px] overflow-hidden cursor-pointer group shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-white/60"
         >
-          <img 
+          <SafeImage 
             src={featuredMemory.image} 
             alt={featuredMemory.title} 
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 

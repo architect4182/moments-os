@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Heart, Plane, Calendar } from "lucide-react";
+import { SafeImage } from "../components/SafeImage";
 
 const people = [
   {
@@ -80,15 +81,15 @@ export default function People() {
   return (
     <div className="min-h-screen bg-[#f5f5f7] text-black font-sans pb-32">
       {/* Editorial Hero Section */}
-      <div className="pt-20 pb-12 px-8 lg:px-16 max-w-[1600px] mx-auto">
+      <div className="pt-20 pb-8 md:pb-12 px-6 md:px-8 lg:px-16 max-w-[1600px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          <h1 className="text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-black">People</h1>
-          <p className="text-2xl text-black/60 font-medium mb-12 leading-relaxed">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-black">People</h1>
+          <p className="text-lg md:text-xl lg:text-2xl text-black/60 font-medium mb-8 md:mb-12 leading-relaxed">
             The people who shaped your story.<br/> Relive the moments you've shared.
           </p>
         </motion.div>
@@ -98,7 +99,7 @@ export default function People() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
-          className="flex gap-2 mb-16 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          className="flex gap-2 mb-10 md:mb-16 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {categories.map((category) => (
             <motion.button
@@ -120,7 +121,7 @@ export default function People() {
         {/* Immersive Portrait Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
         >
           {filteredPeople.map((person, index) => (
             <motion.div
@@ -133,7 +134,7 @@ export default function People() {
               onClick={() => navigate(`/app/people/${person.id}`)}
               className="relative aspect-[3/4] rounded-[32px] overflow-hidden cursor-pointer group shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] border border-white/60 bg-white"
             >
-              <img
+              <SafeImage
                 src={person.image}
                 alt={person.name}
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
