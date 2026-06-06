@@ -1,219 +1,207 @@
-import { motion } from "motion/react";
-import { MapPin, Users, Calendar, Heart } from "lucide-react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { ChevronRight, Play, MapPin, Calendar, Clock } from "lucide-react";
+import { useRef } from "react";
 
-const featuredMemory = {
-  image: "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875",
+const heroMemory = {
+  image: "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?q=80&w=2000&auto=format&fit=crop",
   title: "Sunset at Goa Beach",
-  date: "March 15, 2025",
-  location: "Goa, India",
-  people: ["Sarah", "Alex", "Maya"],
-  music: "Golden Hour — JVKE",
+  subtitle: "GOA 2025",
+  description: "Relive the evening that started it all.",
 };
 
-const recentMemories = [
-  {
-    image: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd",
-    title: "Mountain Adventure",
-    date: "May 3, 2025",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659",
-    title: "Friends Reunion",
-    date: "April 22, 2025",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea",
-    title: "Music Festival",
-    date: "April 10, 2025",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1510694853838-e4a8c978f518",
-    title: "Forest Escape",
-    date: "March 28, 2025",
-  },
+const todayMemory = {
+  image: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=1000&auto=format&fit=crop",
+  date: "June 6, 2024",
+  title: "Goa Trip",
+  timeAgo: "2 Years Ago",
+};
+
+const snapshotCards = [
+  { label: "Countries Explored", value: "7", color: "text-blue-500" },
+  { label: "Cities Visited", value: "24", color: "text-purple-500" },
+  { label: "Memories Preserved", value: "412", color: "text-orange-500" },
+  { label: "Years Captured", value: "5", color: "text-emerald-500" },
 ];
 
-const stats = [
-  { icon: MapPin, label: "Countries", value: "7", color: "from-blue-500 to-cyan-500" },
-  { icon: Users, label: "People", value: "53", color: "from-purple-500 to-pink-500" },
-  { icon: Calendar, label: "Memories", value: "412", color: "from-orange-500 to-red-500" },
-  { icon: Heart, label: "Favorites", value: "89", color: "from-green-500 to-emerald-500" },
+const recentMemories = [
+  { image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=800&auto=format&fit=crop", title: "Friends Reunion", date: "April 22, 2025", location: "New York" },
+  { image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=800&auto=format&fit=crop", title: "Music Festival", date: "April 10, 2025", location: "Coachella" },
+  { image: "https://images.unsplash.com/photo-1510694853838-e4a8c978f518?q=80&w=800&auto=format&fit=crop", title: "Forest Escape", date: "March 28, 2025", location: "Oregon" },
+  { image: "https://images.unsplash.com/photo-1572401611152-cf63d874b019?q=80&w=800&auto=format&fit=crop", title: "Road Trip", date: "March 15, 2025", location: "Route 66" },
+  { image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format&fit=crop", title: "Desert Drive", date: "Feb 10, 2025", location: "Nevada" },
 ];
 
 const collections = [
-  { name: "Summer 2025", count: 45, cover: "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875" },
-  { name: "Family", count: 67, cover: "https://images.unsplash.com/photo-1578496780896-7081cc23c111" },
-  { name: "Adventures", count: 34, cover: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd" },
+  { name: "Summer 2025", count: 45, cover: "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?q=80&w=1200&auto=format&fit=crop" },
+  { name: "Family", count: 67, cover: "https://images.unsplash.com/photo-1578496780896-7081cc23c111?q=80&w=1200&auto=format&fit=crop" },
+  { name: "Road Trips", count: 34, cover: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200&auto=format&fit=crop" },
+  { name: "Beach Escapes", count: 28, cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop" },
 ];
 
 export default function Home() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <div className="p-12 max-w-7xl mx-auto">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-12"
-      >
-        <h1 className="text-5xl mb-2 tracking-tight" style={{ fontWeight: 600 }}>
-          For You
-        </h1>
-        <p className="text-xl text-black/50">Your memories, beautifully organized</p>
-      </motion.div>
-
-      {/* Stats */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-      >
-        {stats.map((stat, index) => {
-          const Icon = stat.icon;
-          return (
-            <motion.div
-              key={stat.label}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-white/60 backdrop-blur-xl rounded-[32px] p-8 border border-white/60"
-              style={{
-                boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
-              }}
+    <div ref={containerRef} className="pb-32 bg-transparent min-h-screen text-black font-sans selection:bg-black/10">
+      {/* Cinematic Hero */}
+      <div className="relative h-[75vh] lg:h-[85vh] w-full overflow-hidden rounded-[40px] mb-12 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] mx-4 lg:mx-8 mt-4 w-[calc(100%-2rem)] lg:w-[calc(100%-4rem)] border border-white/60">
+        <motion.div style={{ y, opacity }} className="absolute inset-0">
+          <img src={heroMemory.image} alt={heroMemory.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        </motion.div>
+        
+        <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-24 pb-16 lg:pb-24 z-10 text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          >
+            <h4 className="text-white/80 text-lg lg:text-xl font-medium tracking-widest uppercase mb-4 drop-shadow-md">
+              {heroMemory.subtitle}
+            </h4>
+            <h1 className="text-5xl lg:text-8xl font-bold tracking-tight mb-6 leading-tight drop-shadow-lg">
+              {heroMemory.title}
+            </h1>
+            <p className="text-xl lg:text-2xl text-white/90 max-w-2xl mb-10 font-light drop-shadow-md">
+              {heroMemory.description}
+            </p>
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white/90 backdrop-blur-xl text-black px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3 hover:bg-white transition-colors w-max shadow-xl"
             >
-              <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${stat.color} flex items-center justify-center mb-4`}>
-                <Icon className="w-6 h-6 text-white" />
-              </div>
-              <div className="text-4xl mb-1" style={{ fontWeight: 600 }}>
-                {stat.value}
-              </div>
-              <div className="text-black/50">{stat.label}</div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+              <Play className="w-5 h-5 fill-black" />
+              Open Memory
+            </motion.button>
+          </motion.div>
+        </div>
+      </div>
 
-      {/* Featured Memory */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="mb-12"
-      >
-        <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
-          Featured Memory
-        </h2>
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="relative aspect-[21/9] rounded-[32px] overflow-hidden cursor-pointer bg-white/60 backdrop-blur-xl border border-white/60"
-          style={{
-            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)",
-          }}
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-16 flex flex-col gap-24">
+        {/* Today in Memories */}
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <img
-            src={featuredMemory.image}
-            alt={featuredMemory.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-          <div className="absolute bottom-8 left-8 right-8 text-white">
-            <h3 className="text-4xl mb-3 tracking-tight" style={{ fontWeight: 600 }}>
-              {featuredMemory.title}
-            </h3>
-            <div className="flex gap-8 text-white/80">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                <span>{featuredMemory.date}</span>
+          <h2 className="text-3xl font-semibold mb-8 tracking-tight text-black">Today in Memories</h2>
+          <motion.div 
+            whileHover={{ scale: 1.02 }}
+            className="relative h-[400px] lg:h-[500px] rounded-[40px] overflow-hidden cursor-pointer group shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-white/60"
+          >
+            <img src={todayMemory.image} alt="Today" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+            <div className="absolute inset-0 p-8 lg:p-12 flex flex-col justify-between text-white">
+              <div className="bg-white/20 backdrop-blur-md self-start px-5 py-2 rounded-full border border-white/30 text-white font-medium flex items-center gap-2 shadow-sm">
+                <Calendar className="w-4 h-4" />
+                {todayMemory.date}
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <span>{featuredMemory.location}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Users className="w-5 h-5" />
-                <span>{featuredMemory.people.join(", ")}</span>
+              <div>
+                <h3 className="text-4xl lg:text-5xl font-bold mb-4 drop-shadow-lg">{todayMemory.title}</h3>
+                <div className="flex items-center gap-4 text-lg text-white/90 drop-shadow-md">
+                  <span className="flex items-center gap-2"><Clock className="w-5 h-5" /> {todayMemory.timeAgo}</span>
+                  <button className="flex items-center gap-1 text-white hover:underline ml-4 font-medium">
+                    View Memory <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
+          </motion.div>
+        </motion.section>
+
+        {/* Moments Snapshot */}
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="text-3xl font-semibold mb-8 tracking-tight text-black">Moments Snapshot</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {snapshotCards.map((card, idx) => (
+              <motion.div
+                key={card.label}
+                whileHover={{ scale: 1.03, y: -5 }}
+                className="relative h-[250px] rounded-[32px] overflow-hidden group bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] cursor-default flex flex-col justify-end p-8"
+              >
+                <span className={`text-6xl font-bold mb-2 tracking-tight ${card.color}`}>{card.value}</span>
+                <span className="text-black/60 font-medium text-lg">{card.label}</span>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
-      </motion.div>
+        </motion.section>
 
-      {/* Recent Memories */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="mb-12"
-      >
-        <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
-          Recent Memories
-        </h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {recentMemories.map((memory, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 + index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="relative aspect-[3/4] rounded-[32px] overflow-hidden cursor-pointer bg-white/60 backdrop-blur-xl border border-white/60"
-              style={{
-                boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <img
-                src={memory.image}
-                alt={memory.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <h3 className="text-xl mb-1 tracking-tight" style={{ fontWeight: 600 }}>
-                  {memory.title}
-                </h3>
-                <p className="text-white/70 text-sm">{memory.date}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+        {/* Recent Memories (Horizontal Scroll) */}
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="w-full overflow-hidden"
+        >
+          <div className="flex justify-between items-end mb-8 pr-4">
+            <h2 className="text-3xl font-semibold tracking-tight text-black">Recent Memories</h2>
+            <button className="text-black/50 hover:text-black flex items-center gap-1 transition-colors font-medium">
+              View All <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+          
+          <div className="flex gap-6 overflow-x-auto pb-12 pt-4 -mt-4 px-4 -mx-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {recentMemories.map((memory, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="relative min-w-[300px] lg:min-w-[400px] aspect-[4/5] rounded-[32px] overflow-hidden snap-start cursor-pointer group shadow-[0_15px_35px_-10px_rgba(0,0,0,0.1)] border border-white/60"
+              >
+                <img src={memory.image} alt={memory.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                  <h3 className="text-2xl font-semibold mb-3 drop-shadow-md">{memory.title}</h3>
+                  <div className="flex flex-col gap-2 text-white/90 text-sm font-medium drop-shadow-md">
+                    <span className="flex items-center gap-2"><Calendar className="w-4 h-4"/> {memory.date}</span>
+                    <span className="flex items-center gap-2"><MapPin className="w-4 h-4"/> {memory.location}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
 
-      {/* Collections Preview */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-      >
-        <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
-          Collections
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {collections.map((collection, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 + index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="relative aspect-[4/3] rounded-[32px] overflow-hidden cursor-pointer bg-white/60 backdrop-blur-xl border border-white/60"
-              style={{
-                boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <img
-                src={collection.cover}
-                alt={collection.name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <h3 className="text-2xl mb-1 tracking-tight" style={{ fontWeight: 600 }}>
-                  {collection.name}
-                </h3>
-                <p className="text-white/70">{collection.count} memories</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+        {/* Collections */}
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-12"
+        >
+          <h2 className="text-3xl font-semibold mb-8 tracking-tight text-black">Collections</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {collections.map((collection, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.02 }}
+                className="relative aspect-[16/9] lg:aspect-[21/9] rounded-[32px] overflow-hidden cursor-pointer group shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] border border-white/60"
+              >
+                <img src={collection.cover} alt={collection.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                  <h3 className="text-3xl font-bold mb-2 drop-shadow-md">{collection.name}</h3>
+                  <span className="text-white/90 font-medium drop-shadow-md">{collection.count} Memories</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+      </div>
     </div>
   );
 }

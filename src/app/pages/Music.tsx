@@ -1,30 +1,34 @@
 import { motion } from "motion/react";
 import { Play, Music as MusicIcon } from "lucide-react";
 
-const recentlyPlayed = [
+const definingSongs = [
   {
     title: "Golden Hour",
     artist: "JVKE",
     memories: 12,
     cover: "https://images.unsplash.com/photo-1580656449278-e8381933522c",
+    associatedMemory: "Goa Sunset, March 2025"
   },
   {
     title: "Sunflower",
     artist: "Post Malone",
     memories: 8,
     cover: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17",
+    associatedMemory: "Summer Drive, June 2024"
   },
   {
     title: "Blinding Lights",
     artist: "The Weeknd",
     memories: 15,
     cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
+    associatedMemory: "City Lights, Dec 2023"
   },
   {
     title: "Levitating",
     artist: "Dua Lipa",
     memories: 10,
     cover: "https://images.unsplash.com/photo-1619983081563-430f63602796",
+    associatedMemory: "Beach Party, Aug 2024"
   },
 ];
 
@@ -79,7 +83,7 @@ export default function Music() {
         <p className="text-xl text-black/50">The soundtrack of your memories</p>
       </motion.div>
 
-      {/* Recently Played Memories */}
+      {/* Songs That Defined Your Memories */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -87,22 +91,22 @@ export default function Music() {
         className="mb-16"
       >
         <h2 className="text-3xl mb-6 tracking-tight" style={{ fontWeight: 600 }}>
-          Recently Played Memories
+          Songs That Defined Your Memories
         </h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {recentlyPlayed.map((song, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {definingSongs.map((song, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1 + index * 0.05 }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-white/60 backdrop-blur-xl rounded-[32px] p-6 border border-white/60 cursor-pointer group"
+              className="bg-white/60 backdrop-blur-xl rounded-[32px] p-6 border border-white/60 cursor-pointer group flex flex-col"
               style={{
                 boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <div className="aspect-square rounded-2xl overflow-hidden mb-4 relative">
+              <div className="aspect-square rounded-2xl overflow-hidden mb-5 relative shrink-0">
                 <img
                   src={song.cover}
                   alt={song.title}
@@ -112,17 +116,25 @@ export default function Music() {
                   <motion.div
                     initial={{ scale: 0 }}
                     whileHover={{ scale: 1 }}
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center"
+                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg"
                   >
                     <Play className="w-6 h-6 text-black ml-1" />
                   </motion.div>
                 </div>
               </div>
-              <h3 className="text-xl mb-1 tracking-tight" style={{ fontWeight: 600 }}>
-                {song.title}
-              </h3>
-              <p className="text-black/60 mb-2">{song.artist}</p>
-              <p className="text-sm text-black/50">{song.memories} memories</p>
+              <div className="flex-1 flex flex-col">
+                <h3 className="text-xl mb-1 tracking-tight" style={{ fontWeight: 600 }}>
+                  {song.title}
+                </h3>
+                <p className="text-black/60 font-medium mb-3">{song.artist}</p>
+                <div className="mt-auto">
+                  <p className="text-sm font-semibold text-black/80 mb-1">{song.memories} memories</p>
+                  <p className="text-xs text-black/50 leading-tight">
+                    Most remembered with:<br/>
+                    <span className="font-medium text-black/70">{song.associatedMemory}</span>
+                  </p>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

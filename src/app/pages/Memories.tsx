@@ -3,164 +3,239 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { MapPin, Users } from "lucide-react";
 
-const filters = ["All", "Travel", "Family", "Friends", "Work", "Favorites", "Recent"];
+const years = ["2026", "2025", "2024", "2023", "2022"];
+const filters = ["All", "Travel", "People", "Family", "Music", "Places", "Favorites"];
 
-const memories = [
+const featuredMemory = {
+  id: "featured-1",
+  image: "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?q=80&w=2000&auto=format&fit=crop",
+  title: "Sunset at Goa Beach",
+  location: "Goa, India",
+  date: "March 15, 2025",
+  people: 3,
+};
+
+const memoryClusters = [
   {
-    id: 1,
-    image: "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875",
-    title: "Goa Sunset",
-    location: "Goa, India",
-    date: "March 2025",
-    people: 3,
-    size: "large",
+    title: "MARCH 2025",
+    memories: [
+      {
+        id: 1,
+        image: "https://images.unsplash.com/photo-1510694853838-e4a8c978f518?q=80&w=800&auto=format&fit=crop",
+        title: "Forest Walk",
+        location: "Oregon",
+        date: "March 28, 2025",
+        people: 2,
+        aspect: "aspect-square",
+      },
+      {
+        id: 7,
+        image: "https://images.unsplash.com/photo-1572401611152-cf63d874b019?q=80&w=800&auto=format&fit=crop",
+        title: "Road Trip",
+        location: "Route 66",
+        date: "March 15, 2025",
+        people: 3,
+        aspect: "aspect-[4/5]",
+      },
+      {
+        id: 2,
+        image: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=800&auto=format&fit=crop",
+        title: "Mountain Peak",
+        location: "Swiss Alps",
+        date: "March 5, 2025",
+        people: 2,
+        aspect: "aspect-square",
+      },
+    ]
   },
   {
-    id: 2,
-    image: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd",
-    title: "Mountain Peak",
-    location: "Swiss Alps",
-    date: "May 2025",
-    people: 2,
-    size: "regular",
+    title: "FEBRUARY 2025",
+    memories: [
+      {
+        id: 3,
+        image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=800&auto=format&fit=crop",
+        title: "Friends Forever",
+        location: "New York",
+        date: "Feb 22, 2025",
+        people: 5,
+        aspect: "aspect-[4/3]",
+      },
+      {
+        id: 4,
+        image: "https://images.unsplash.com/photo-1578496780896-7081cc23c111?q=80&w=800&auto=format&fit=crop",
+        title: "Family Dinner",
+        location: "Home",
+        date: "Feb 14, 2025",
+        people: 8,
+        aspect: "aspect-[4/5]",
+      },
+    ]
   },
   {
-    id: 3,
-    image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659",
-    title: "Friends Forever",
-    location: "New York",
-    date: "April 2025",
-    people: 5,
-    size: "regular",
-  },
-  {
-    id: 4,
-    image: "https://images.unsplash.com/photo-1578496780896-7081cc23c111",
-    title: "Family Dinner",
-    location: "Home",
-    date: "April 2025",
-    people: 8,
-    size: "large",
-  },
-  {
-    id: 5,
-    image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea",
-    title: "Music Festival",
-    location: "Coachella",
-    date: "April 2025",
-    people: 4,
-    size: "regular",
-  },
-  {
-    id: 6,
-    image: "https://images.unsplash.com/photo-1510694853838-e4a8c978f518",
-    title: "Forest Walk",
-    location: "Oregon",
-    date: "March 2025",
-    people: 2,
-    size: "regular",
-  },
-  {
-    id: 7,
-    image: "https://images.unsplash.com/photo-1572401611152-cf63d874b019",
-    title: "Road Trip",
-    location: "Route 66",
-    date: "May 2025",
-    people: 3,
-    size: "large",
-  },
-  {
-    id: 8,
-    image: "https://images.unsplash.com/photo-1664353655151-9d94a9170eb0",
-    title: "City Lights",
-    location: "Tokyo",
-    date: "June 2025",
-    people: 1,
-    size: "regular",
-  },
+    title: "GOA TRIP",
+    memories: [
+      {
+        id: 5,
+        image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=800&auto=format&fit=crop",
+        title: "Music Festival",
+        location: "Coachella",
+        date: "Jan 20, 2025",
+        people: 4,
+        aspect: "aspect-square",
+      },
+      {
+        id: 8,
+        image: "https://images.unsplash.com/photo-1664353655151-9d94a9170eb0?q=80&w=800&auto=format&fit=crop",
+        title: "City Lights",
+        location: "Tokyo",
+        date: "Jan 5, 2025",
+        people: 1,
+        aspect: "aspect-[4/5]",
+      },
+    ]
+  }
 ];
+
+function MemoryCard({ memory, onClick }: { memory: any, onClick: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ scale: 1.02 }}
+      onClick={onClick}
+      className={`relative rounded-[32px] overflow-hidden cursor-pointer bg-white/60 backdrop-blur-xl border border-white/60 group shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] ${memory.aspect}`}
+    >
+      <img
+        src={memory.image}
+        alt={memory.title}
+        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+      />
+      {/* Persistent subtle overlay */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+      
+      {/* Metadata container */}
+      <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
+        <h3 className="text-2xl mb-1 tracking-tight drop-shadow-md" style={{ fontWeight: 600 }}>
+          {memory.title}
+        </h3>
+        <p className="text-white/90 text-sm font-medium drop-shadow-md">{memory.location}</p>
+        
+        {/* Reveal on hover section */}
+        <div className="overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-[50px] group-hover:opacity-100 group-hover:mt-2">
+          <div className="flex items-center gap-4 text-sm text-white/80 font-medium">
+            <span className="flex items-center gap-1">
+              <Users className="w-4 h-4" /> {memory.people} People
+            </span>
+          </div>
+        </div>
+        
+        <p className="text-white/70 text-xs font-medium mt-1 transition-all duration-300 group-hover:text-white/90">{memory.date}</p>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Memories() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [activeYear, setActiveYear] = useState("2025");
   const navigate = useNavigate();
 
   return (
-    <div className="p-12 max-w-7xl mx-auto">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-8"
-      >
-        <h1 className="text-5xl mb-2 tracking-tight" style={{ fontWeight: 600 }}>
-          Memories
-        </h1>
-        <p className="text-xl text-black/50">All your captured moments</p>
-      </motion.div>
+    <div className="py-12 px-6 lg:px-12 max-w-[1600px] mx-auto min-h-screen">
+      {/* Timeline Navigation */}
+      <div className="flex gap-8 mb-10 overflow-x-auto pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        {years.map((year) => (
+          <motion.button
+            key={year}
+            onClick={() => setActiveYear(year)}
+            className={`text-3xl lg:text-5xl font-bold tracking-tight transition-colors snap-start ${
+              activeYear === year ? "text-black" : "text-black/20 hover:text-black/40"
+            }`}
+          >
+            {year}
+          </motion.button>
+        ))}
+      </div>
 
-      {/* Filters */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="flex gap-3 mb-12 overflow-x-auto pb-2"
-      >
+      {/* Premium Filters */}
+      <div className="flex gap-2 mb-16 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {filters.map((filter) => (
           <motion.button
             key={filter}
             onClick={() => setActiveFilter(filter)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`px-6 py-3 rounded-full whitespace-nowrap transition-all ${
+            className={`px-5 py-2 rounded-full whitespace-nowrap transition-all text-sm font-semibold border ${
               activeFilter === filter
-                ? "bg-black text-white"
-                : "bg-white/60 backdrop-blur-xl text-black/70 hover:bg-white/80 border border-white/60"
+                ? "bg-black text-white border-black shadow-lg"
+                : "bg-white/50 backdrop-blur-2xl text-black/60 hover:text-black border-white/80 shadow-sm hover:shadow-md"
             }`}
-            style={{ fontWeight: 500 }}
           >
             {filter}
           </motion.button>
         ))}
+      </div>
+
+      {/* Featured This Week */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-24"
+      >
+        <h2 className="text-sm font-bold tracking-widest text-black/40 uppercase mb-4 pl-2">Featured This Week</h2>
+        <motion.div 
+          whileHover={{ scale: 1.01 }}
+          onClick={() => navigate(`/app/memories/${featuredMemory.id}`)}
+          className="relative w-full lg:w-[75%] h-[400px] lg:h-[500px] rounded-[40px] overflow-hidden cursor-pointer group shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-white/60"
+        >
+          <img 
+            src={featuredMemory.image} 
+            alt={featuredMemory.title} 
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+          />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+          
+          <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12 text-white">
+            <h3 className="text-4xl lg:text-5xl font-bold mb-2 tracking-tight drop-shadow-md">
+              {featuredMemory.title}
+            </h3>
+            <p className="text-xl text-white/90 font-medium mb-1 drop-shadow-md">{featuredMemory.location}</p>
+            
+            <div className="overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-[50px] group-hover:opacity-100 group-hover:mt-4">
+              <div className="flex items-center gap-4 text-lg text-white/90 font-medium">
+                <span className="flex items-center gap-2"><Users className="w-5 h-5" /> {featuredMemory.people} People</span>
+              </div>
+            </div>
+
+            <p className="text-white/80 font-medium mt-2 transition-all duration-300 group-hover:text-white">{featuredMemory.date}</p>
+          </div>
+        </motion.div>
       </motion.div>
 
-      {/* Masonry Grid */}
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-        {memories.map((memory, index) => (
-          <motion.div
-            key={memory.id}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 + index * 0.05 }}
-            whileHover={{ scale: 1.03, y: -8 }}
-            onClick={() => navigate(`/app/memories/${memory.id}`)}
-            className={`relative rounded-[32px] overflow-hidden cursor-pointer bg-white/60 backdrop-blur-xl border border-white/60 break-inside-avoid group ${
-              memory.size === "large" ? "aspect-[4/5]" : "aspect-square"
-            }`}
-            style={{
-              boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
-            }}
+      {/* Memory Clusters */}
+      <div className="flex flex-col gap-20 pb-32">
+        {memoryClusters.map((cluster, clusterIdx) => (
+          <motion.div 
+            key={clusterIdx}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
           >
-            <img
-              src={memory.image}
-              alt={memory.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-              <h3 className="text-2xl mb-2 tracking-tight" style={{ fontWeight: 600 }}>
-                {memory.title}
-              </h3>
-              <div className="flex items-center gap-4 text-sm text-white/80">
-                <div className="flex items-center gap-1">
-                  <MapPin className="w-4 h-4" />
-                  <span>{memory.location}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Users className="w-4 h-4" />
-                  <span>{memory.people}</span>
-                </div>
-              </div>
-              <div className="text-white/60 text-sm mt-1">{memory.date}</div>
+            <div className="flex items-center justify-between mb-6 pl-2">
+              <h2 className="text-xl font-bold tracking-tight text-black">{cluster.title}</h2>
+              <button className="text-sm font-semibold text-blue-500 hover:text-blue-600 transition-colors">Select</button>
+            </div>
+            
+            {/* Staggered Grid for each cluster */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {cluster.memories.map((memory) => (
+                <MemoryCard 
+                  key={memory.id} 
+                  memory={memory} 
+                  onClick={() => navigate(`/app/memories/${memory.id}`)} 
+                />
+              ))}
             </div>
           </motion.div>
         ))}

@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import { Heart } from "lucide-react";
+import { useNavigate } from "react-router";
+import { Heart, Plane, Calendar } from "lucide-react";
 
 const people = [
   {
@@ -8,15 +9,19 @@ const people = [
     name: "Sarah Johnson",
     category: "Family",
     memories: 145,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+    years: 28,
+    trips: 12,
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop",
     relation: "Sister",
   },
   {
     id: 2,
     name: "Alex Chen",
-    category: "Friends",
+    category: "Travel Partners",
     memories: 89,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
+    years: 5,
+    trips: 8,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop",
     relation: "Best Friend",
   },
   {
@@ -24,75 +29,76 @@ const people = [
     name: "Maya Patel",
     category: "Friends",
     memories: 67,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
-    relation: "Friend",
+    years: 4,
+    trips: 3,
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1200&auto=format&fit=crop",
+    relation: "Close Friend",
   },
   {
     id: 4,
     name: "Jordan Williams",
     category: "Family",
     memories: 123,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    years: 25,
+    trips: 10,
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop",
     relation: "Brother",
   },
   {
     id: 5,
     name: "Emma Davis",
-    category: "Friends",
+    category: "Colleagues",
     memories: 54,
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
-    relation: "Friend",
+    years: 3,
+    trips: 2,
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop",
+    relation: "Colleague",
   },
   {
     id: 6,
     name: "Michael Brown",
-    category: "Family",
+    category: "Favorites",
     memories: 178,
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d",
-    relation: "Father",
+    years: 12,
+    trips: 15,
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop",
+    relation: "Partner",
   },
 ];
 
-const sharedMemories = [
-  { image: "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875", title: "Beach Sunset" },
-  { image: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd", title: "Mountain Trip" },
-  { image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659", title: "Celebration" },
-  { image: "https://images.unsplash.com/photo-1510694853838-e4a8c978f518", title: "Nature Walk" },
-  { image: "https://images.unsplash.com/photo-1572401611152-cf63d874b019", title: "Road Trip" },
-  { image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea", title: "Festival" },
-];
+const categories = ["All", "Favorites", "Family", "Friends", "Travel Partners", "Colleagues"];
 
 export default function People() {
-  const [selectedPerson, setSelectedPerson] = useState(people[0]);
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const navigate = useNavigate();
 
-  const categories = ["All", "Family", "Friends"];
   const filteredPeople =
     activeCategory === "All"
       ? people
       : people.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="h-screen flex">
-      {/* People List */}
-      <div className="flex-1 p-12 overflow-y-auto">
+    <div className="min-h-screen bg-[#f5f5f7] text-black font-sans pb-32">
+      {/* Editorial Hero Section */}
+      <div className="pt-20 pb-12 px-8 lg:px-16 max-w-[1600px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl"
         >
-          <h1 className="text-5xl mb-2 tracking-tight" style={{ fontWeight: 600 }}>
-            People
-          </h1>
-          <p className="text-xl text-black/50">The ones who matter most</p>
+          <h1 className="text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-black">People</h1>
+          <p className="text-2xl text-black/60 font-medium mb-12 leading-relaxed">
+            The people who shaped your story.<br/> Relive the moments you've shared.
+          </p>
         </motion.div>
 
-        {/* Category Filters */}
+        {/* Premium Glass Filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="flex gap-3 mb-12"
+          transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
+          className="flex gap-2 mb-16 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {categories.map((category) => (
             <motion.button
@@ -100,152 +106,61 @@ export default function People() {
               onClick={() => setActiveCategory(category)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-3 rounded-full transition-all ${
+              className={`px-6 py-3 rounded-full whitespace-nowrap transition-all text-[15px] font-semibold border ${
                 activeCategory === category
-                  ? "bg-black text-white"
-                  : "bg-white/60 backdrop-blur-xl text-black/70 hover:bg-white/80 border border-white/60"
+                  ? "bg-black text-white border-black shadow-lg"
+                  : "bg-white/50 backdrop-blur-2xl text-black/60 hover:text-black border-white/80 shadow-sm hover:shadow-md"
               }`}
-              style={{ fontWeight: 500 }}
             >
               {category}
             </motion.button>
           ))}
         </motion.div>
 
-        {/* People Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Immersive Portrait Grid */}
+        <motion.div 
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+        >
           {filteredPeople.map((person, index) => (
             <motion.div
+              layout
               key={person.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1 + index * 0.05 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              onClick={() => setSelectedPerson(person)}
-              className={`relative aspect-[3/4] rounded-[32px] overflow-hidden cursor-pointer bg-white/60 backdrop-blur-xl border-2 transition-all ${
-                selectedPerson.id === person.id
-                  ? "border-black shadow-2xl"
-                  : "border-white/60"
-              }`}
-              style={{
-                boxShadow:
-                  selectedPerson.id === person.id
-                    ? "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                    : "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
-              }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.1 + index * 0.05, duration: 0.5, ease: "easeOut" }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              onClick={() => navigate(`/app/people/${person.id}`)}
+              className="relative aspect-[3/4] rounded-[32px] overflow-hidden cursor-pointer group shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] border border-white/60 bg-white"
             >
               <img
                 src={person.image}
                 alt={person.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <h3 className="text-2xl mb-1 tracking-tight" style={{ fontWeight: 600 }}>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end text-white">
+                <div className="flex items-center gap-2 mb-2 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                  <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/20">
+                    {person.relation}
+                  </span>
+                </div>
+                
+                <h3 className="text-3xl font-bold mb-3 tracking-tight drop-shadow-md">
                   {person.name}
                 </h3>
-                <p className="text-white/70">{person.memories} memories</p>
+                
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-white/90 text-sm font-medium drop-shadow-md">
+                  <span className="flex items-center gap-1.5"><Heart className="w-4 h-4 text-red-400" /> {person.memories} Memories</span>
+                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> {person.years} Years</span>
+                  <span className="flex items-center gap-1.5"><Plane className="w-4 h-4" /> {person.trips} Trips</span>
+                </div>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-
-      {/* Side Panel */}
-      <motion.div
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        className="w-96 bg-white/60 backdrop-blur-xl border-l border-white/60 p-8 overflow-y-auto"
-      >
-        {selectedPerson && (
-          <motion.div
-            key={selectedPerson.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            {/* Person Image */}
-            <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-6 border-4 border-white">
-              <img
-                src={selectedPerson.image}
-                alt={selectedPerson.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Person Info */}
-            <div className="text-center mb-8">
-              <h2 className="text-3xl mb-2 tracking-tight" style={{ fontWeight: 600 }}>
-                {selectedPerson.name}
-              </h2>
-              <p className="text-lg text-black/60 mb-1">{selectedPerson.relation}</p>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 rounded-full border border-white/60 text-sm">
-                <Heart className="w-4 h-4 text-red-500" />
-                <span>{selectedPerson.memories} shared memories</span>
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              <div className="bg-white/60 rounded-3xl p-6 border border-white/60 text-center">
-                <div className="text-3xl mb-1" style={{ fontWeight: 600 }}>
-                  12
-                </div>
-                <div className="text-black/60">Trips</div>
-              </div>
-              <div className="bg-white/60 rounded-3xl p-6 border border-white/60 text-center">
-                <div className="text-3xl mb-1" style={{ fontWeight: 600 }}>
-                  8
-                </div>
-                <div className="text-black/60">Years</div>
-              </div>
-            </div>
-
-            {/* Shared Memories */}
-            <h3 className="text-xl mb-4 tracking-tight" style={{ fontWeight: 600 }}>
-              Memories Together
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              {sharedMemories.map((memory, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="aspect-square rounded-2xl overflow-hidden bg-white/60 border border-white/60 cursor-pointer group"
-                >
-                  <img
-                    src={memory.image}
-                    alt={memory.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Favorite Moments */}
-            <h3 className="text-xl mb-4 mt-8 tracking-tight" style={{ fontWeight: 600 }}>
-              Favorite Moments
-            </h3>
-            <div className="space-y-3">
-              {["Beach sunset in Goa", "Mountain hike adventure", "Road trip memories"].map(
-                (moment, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + i * 0.1 }}
-                    className="flex items-center gap-3 p-4 bg-white/60 rounded-2xl border border-white/60"
-                  >
-                    <Heart className="w-5 h-5 text-red-500 flex-shrink-0" />
-                    <span className="text-black/70">{moment}</span>
-                  </motion.div>
-                )
-              )}
-            </div>
-          </motion.div>
-        )}
-      </motion.div>
     </div>
   );
 }
