@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   Cloud,
 } from "lucide-react";
+// @ts-ignore
 import profileImg from "../../assets/profile.jpg";
 
 const userProfile = {

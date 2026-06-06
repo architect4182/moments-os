@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router";
+// @ts-ignore
 import profileImg from "../../assets/profile.jpg";
 import { motion, AnimatePresence } from "motion/react";
 import {
