@@ -12,25 +12,42 @@ import Collections from "./pages/Collections";
 import Journal from "./pages/Journal";
 import Settings from "./pages/Settings";
 
+import { ScrollToTop } from "./components/ScrollToTop";
+import { Outlet } from "react-router";
+
+function RootLayout() {
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
+}
+
 export const router = createBrowserRouter([
   {
-    path: "/",
-    Component: Landing,
-  },
-  {
-    path: "/app",
-    Component: AppLayout,
+    element: <RootLayout />,
     children: [
-      { index: true, Component: Home },
-      { path: "memories", Component: Memories },
-      { path: "memories/:id", Component: MemoryDetail },
-      { path: "places", Component: Places },
-      { path: "people", Component: People },
-      { path: "people/:id", Component: PersonDetail },
-      { path: "music", Component: Music },
-      { path: "collections", Component: Collections },
-      { path: "journal", Component: Journal },
-      { path: "settings", Component: Settings },
+      {
+        path: "/",
+        Component: Landing,
+      },
+      {
+        path: "/app",
+        Component: AppLayout,
+        children: [
+          { index: true, Component: Home },
+          { path: "memories", Component: Memories },
+          { path: "memories/:id", Component: MemoryDetail },
+          { path: "places", Component: Places },
+          { path: "people", Component: People },
+          { path: "people/:id", Component: PersonDetail },
+          { path: "music", Component: Music },
+          { path: "collections", Component: Collections },
+          { path: "journal", Component: Journal },
+          { path: "settings", Component: Settings },
+        ],
+      },
     ],
   },
 ]);

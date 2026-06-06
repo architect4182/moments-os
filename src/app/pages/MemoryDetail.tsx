@@ -57,7 +57,7 @@ export default function MemoryDetail() {
       >
         <Button
           onClick={() => navigate("/app/memories")}
-          className="bg-white/60 backdrop-blur-xl border border-white/60 text-black hover:bg-white/80 rounded-full px-6"
+          className="bg-card/ backdrop-blur-xl border border-white/60 text-foreground hover:bg-card/ rounded-full px-6"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           Back
@@ -114,7 +114,7 @@ export default function MemoryDetail() {
           <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 tracking-tight" style={{ fontWeight: 600 }}>
             Journal Entry
           </h2>
-          <p className="text-lg md:text-xl leading-relaxed text-black/70">
+          <p className="text-lg md:text-xl leading-relaxed text-foreground/">
             {memoryData.description}
           </p>
         </motion.div>
@@ -166,7 +166,7 @@ export default function MemoryDetail() {
           </h2>
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 bg-white/60 backdrop-blur-xl border border-white/60 rounded-[24px] md:rounded-[32px] p-5 md:p-6 cursor-pointer"
+            className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 bg-card/ backdrop-blur-xl border border-white/60 rounded-[24px] md:rounded-[32px] p-5 md:p-6 cursor-pointer"
             style={{
               boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
             }}
@@ -182,9 +182,9 @@ export default function MemoryDetail() {
               <div className="text-2xl mb-1" style={{ fontWeight: 600 }}>
                 {memoryData.music.title}
               </div>
-              <div className="text-lg text-black/60">{memoryData.music.artist}</div>
+              <div className="text-lg text-foreground/">{memoryData.music.artist}</div>
             </div>
-            <Music className="w-8 h-8 text-black/40" />
+            <Music className="w-8 h-8 text-foreground/" />
           </motion.div>
         </motion.div>
 
@@ -206,7 +206,7 @@ export default function MemoryDetail() {
                 transition={{ delay: 0.7 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -5 }}
                 onClick={() => navigate(`/app/memories/${memory.id}`)}
-                className="relative aspect-square rounded-[32px] overflow-hidden cursor-pointer bg-white/60 backdrop-blur-xl border border-white/60 group"
+                className="relative aspect-square rounded-[32px] overflow-hidden cursor-pointer bg-card/ backdrop-blur-xl border border-white/60 group"
                 style={{
                   boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
                 }}

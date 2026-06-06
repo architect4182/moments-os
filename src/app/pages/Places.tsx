@@ -127,7 +127,7 @@ export default function Places() {
   const [isGlobeView, setIsGlobeView] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-black font-sans pb-32">
+    <div className="min-h-screen bg-background text-foreground font-sans pb-32">
       
       {/* Places Hero Section */}
       <div className="pt-20 pb-12 px-8 lg:px-16 max-w-[1600px] mx-auto">
@@ -137,13 +137,13 @@ export default function Places() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center flex flex-col items-center"
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-black">Places</h1>
-          <p className="text-xl md:text-2xl text-black/60 font-medium mb-6">Explore your memories around the world.</p>
-          <div className="inline-flex flex-wrap justify-center items-center gap-2 md:gap-4 bg-white/60 backdrop-blur-xl px-6 py-3 rounded-[24px] md:rounded-full border border-black/5 shadow-sm text-base md:text-lg font-medium text-black/80">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-foreground">Places</h1>
+          <p className="text-xl md:text-2xl text-foreground/ font-medium mb-6">Explore your memories around the world.</p>
+          <div className="inline-flex flex-wrap justify-center items-center gap-2 md:gap-4 bg-card/ backdrop-blur-xl px-6 py-3 rounded-[24px] md:rounded-full border border-foreground/ shadow-sm text-base md:text-lg font-medium text-foreground/">
             <span>7 Countries</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-black/20" />
+            <span className="w-1.5 h-1.5 rounded-full bg-foreground/" />
             <span>53 Cities</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-black/20" />
+            <span className="w-1.5 h-1.5 rounded-full bg-foreground/" />
             <span>412 Memories</span>
           </div>
         </motion.div>
@@ -162,16 +162,16 @@ export default function Places() {
             }`}
           >
             {/* View Toggle */}
-            <div className="absolute top-6 left-6 z-20 flex gap-2 bg-white/80 backdrop-blur-xl p-1.5 rounded-full border border-white shadow-sm">
+            <div className="absolute top-6 left-6 z-20 flex gap-2 bg-card/ backdrop-blur-xl p-1.5 rounded-full border border-white shadow-sm">
               <button 
                 onClick={() => setIsGlobeView(false)}
-                className={`p-2.5 rounded-full transition-all ${!isGlobeView ? 'bg-black text-white shadow-md' : 'text-black/60 hover:text-black hover:bg-black/5'}`}
+                className={`p-2.5 rounded-full transition-all ${!isGlobeView ? 'bg-black text-white shadow-md' : 'text-foreground/ hover:text-foreground hover:bg-foreground/'}`}
               >
                 <Map className="w-5 h-5" />
               </button>
               <button 
                 onClick={() => setIsGlobeView(true)}
-                className={`p-2.5 rounded-full transition-all ${isGlobeView ? 'bg-black text-white shadow-md' : 'text-black/60 hover:text-black hover:bg-black/5'}`}
+                className={`p-2.5 rounded-full transition-all ${isGlobeView ? 'bg-black text-white shadow-md' : 'text-foreground/ hover:text-foreground hover:bg-foreground/'}`}
               >
                 <Globe className="w-5 h-5" />
               </button>
@@ -234,7 +234,7 @@ export default function Places() {
                 >
                   <div className="relative flex flex-col items-center">
                     {/* Tooltip on hover */}
-                    <div className="absolute bottom-full mb-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-black/5 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-30 font-medium text-sm pointer-events-none transform translate-y-2 group-hover:translate-y-0">
+                    <div className="absolute bottom-full mb-2 bg-card/ backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-foreground/ opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-30 font-medium text-sm pointer-events-none transform translate-y-2 group-hover:translate-y-0">
                       {place.name}
                     </div>
 
@@ -252,7 +252,7 @@ export default function Places() {
                         className={`relative z-10 flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300 ${
                           selectedPlace.id === place.id
                             ? "bg-blue-500 border-white text-white shadow-[0_10px_20px_rgba(59,130,246,0.4)] scale-110"
-                            : "bg-white border-transparent text-black/60 shadow-[0_5px_15px_rgba(0,0,0,0.1)] group-hover:scale-110 group-hover:text-black"
+                            : "bg-card border-transparent text-foreground/ shadow-[0_5px_15px_rgba(0,0,0,0.1)] group-hover:scale-110 group-hover:text-foreground"
                         }`}
                       >
                         <MapPin className="w-4 h-4 fill-current opacity-20" />
@@ -285,7 +285,7 @@ export default function Places() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="w-full lg:w-[400px] shrink-0 bg-white rounded-[32px] lg:rounded-[40px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-black/5 overflow-hidden flex flex-col lg:h-full max-h-[600px] lg:max-h-none"
+                className="w-full lg:w-[400px] shrink-0 bg-card rounded-[32px] lg:rounded-[40px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-foreground/ overflow-hidden flex flex-col lg:h-full max-h-[600px] lg:max-h-none"
               >
                 {/* Cover Image */}
                 <div className="relative h-64 shrink-0">
@@ -303,41 +303,41 @@ export default function Places() {
                 <div className="p-6 flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden">
                   {/* Stats Row */}
                   <div className="flex gap-4 mb-8">
-                    <div className="flex-1 bg-[#f5f5f7] rounded-3xl p-5 flex flex-col items-center justify-center text-center">
-                      <span className="text-3xl font-bold text-black mb-1">{selectedPlace.visits}</span>
-                      <span className="text-black/50 font-medium text-sm">Visits</span>
+                    <div className="flex-1 bg-background rounded-3xl p-5 flex flex-col items-center justify-center text-center">
+                      <span className="text-3xl font-bold text-foreground mb-1">{selectedPlace.visits}</span>
+                      <span className="text-foreground/ font-medium text-sm">Visits</span>
                     </div>
-                    <div className="flex-1 bg-[#f5f5f7] rounded-3xl p-5 flex flex-col items-center justify-center text-center">
-                      <span className="text-3xl font-bold text-black mb-1">{selectedPlace.memories}</span>
-                      <span className="text-black/50 font-medium text-sm">Memories</span>
+                    <div className="flex-1 bg-background rounded-3xl p-5 flex flex-col items-center justify-center text-center">
+                      <span className="text-3xl font-bold text-foreground mb-1">{selectedPlace.memories}</span>
+                      <span className="text-foreground/ font-medium text-sm">Memories</span>
                     </div>
                   </div>
 
                   {/* Visit Dates */}
-                  <div className="bg-white border border-black/5 shadow-sm rounded-3xl p-5 mb-8 flex justify-between items-center">
+                  <div className="bg-card border border-foreground/ shadow-sm rounded-3xl p-5 mb-8 flex justify-between items-center">
                     <div>
-                      <div className="text-black/50 text-xs font-bold uppercase tracking-wider mb-1">First Visit</div>
-                      <div className="font-semibold text-lg text-black">{selectedPlace.firstVisit}</div>
+                      <div className="text-foreground/ text-xs font-bold uppercase tracking-wider mb-1">First Visit</div>
+                      <div className="font-semibold text-lg text-foreground">{selectedPlace.firstVisit}</div>
                     </div>
-                    <div className="w-px h-8 bg-black/10" />
+                    <div className="w-px h-8 bg-foreground/" />
                     <div className="text-right">
-                      <div className="text-black/50 text-xs font-bold uppercase tracking-wider mb-1">Last Visit</div>
-                      <div className="font-semibold text-lg text-black">{selectedPlace.lastVisit}</div>
+                      <div className="text-foreground/ text-xs font-bold uppercase tracking-wider mb-1">Last Visit</div>
+                      <div className="font-semibold text-lg text-foreground">{selectedPlace.lastVisit}</div>
                     </div>
                   </div>
 
                   {/* Memory Timeline */}
                   <div>
-                    <h3 className="text-lg font-bold mb-4 text-black">Memory Timeline</h3>
-                    <div className="flex flex-col gap-5 relative before:absolute before:inset-y-2 before:left-[11px] before:w-px before:bg-black/10">
+                    <h3 className="text-lg font-bold mb-4 text-foreground">Memory Timeline</h3>
+                    <div className="flex flex-col gap-5 relative before:absolute before:inset-y-2 before:left-[11px] before:w-px before:bg-foreground/">
                       {selectedPlace.timeline.map((item, idx) => (
                         <div key={idx} className="flex gap-4 relative z-10">
-                          <div className="w-6 h-6 rounded-full bg-white border-4 border-[#f5f5f7] flex items-center justify-center mt-0.5 shrink-0 shadow-sm">
+                          <div className="w-6 h-6 rounded-full bg-card border-4 border-[#f5f5f7] flex items-center justify-center mt-0.5 shrink-0 shadow-sm">
                             <div className="w-2 h-2 rounded-full bg-blue-500" />
                           </div>
                           <div>
-                            <div className="text-sm font-bold text-black/50 mb-0.5">{item.date}</div>
-                            <div className="font-semibold text-black">{item.title}</div>
+                            <div className="text-sm font-bold text-foreground/ mb-0.5">{item.date}</div>
+                            <div className="font-semibold text-foreground">{item.title}</div>
                           </div>
                         </div>
                       ))}
@@ -358,8 +358,8 @@ export default function Places() {
           className="mt-12"
         >
           <div className="flex justify-between items-end mb-6 md:mb-8 pr-2">
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-black">Travel Collections</h2>
-            <button className="text-black/50 hover:text-black flex items-center gap-1 transition-colors font-medium text-sm md:text-base">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">Travel Collections</h2>
+            <button className="text-foreground/ hover:text-foreground flex items-center gap-1 transition-colors font-medium text-sm md:text-base">
               View All <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           </div>
@@ -395,7 +395,7 @@ export default function Places() {
           className="mt-12 overflow-hidden"
         >
           <div className="flex justify-between items-end mb-6 md:mb-8 pr-2">
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-black">Recently Visited</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">Recently Visited</h2>
           </div>
           
           <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 md:pb-12 pt-4 -mt-4 px-0 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
@@ -408,14 +408,14 @@ export default function Places() {
                   setSelectedPlace(place);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="relative min-w-[280px] lg:min-w-[320px] bg-white rounded-[32px] p-4 snap-start cursor-pointer group shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] border border-black/5"
+                className="relative min-w-[280px] lg:min-w-[320px] bg-card rounded-[32px] p-4 snap-start cursor-pointer group shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] border border-foreground/"
               >
                 <div className="aspect-[16/10] rounded-[24px] overflow-hidden mb-4">
                   <SafeImage src={place.image} alt={place.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="px-2 pb-2">
-                  <h3 className="text-xl font-bold text-black mb-1">{place.name}</h3>
-                  <div className="flex justify-between items-center text-sm font-medium text-black/50">
+                  <h3 className="text-xl font-bold text-foreground mb-1">{place.name}</h3>
+                  <div className="flex justify-between items-center text-sm font-medium text-foreground/">
                     <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> {place.lastVisit}</span>
                     <span>{place.memories} Memories</span>
                   </div>

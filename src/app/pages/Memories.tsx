@@ -105,7 +105,7 @@ function MemoryCard({ memory, onClick }: { memory: any, onClick: () => void }) {
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ scale: 1.02 }}
       onClick={onClick}
-      className={`relative rounded-[32px] overflow-hidden cursor-pointer bg-white/60 backdrop-blur-xl border border-white/60 group shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] ${memory.aspect}`}
+      className={`relative rounded-[32px] overflow-hidden cursor-pointer bg-card/ backdrop-blur-xl border border-white/60 group shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] ${memory.aspect}`}
     >
       <SafeImage
         src={memory.image}
@@ -151,7 +151,7 @@ export default function Memories() {
             key={year}
             onClick={() => setActiveYear(year)}
             className={`text-3xl lg:text-5xl font-bold tracking-tight transition-colors snap-start ${
-              activeYear === year ? "text-black" : "text-black/20 hover:text-black/40"
+              activeYear === year ? "text-foreground" : "text-foreground/ hover:text-foreground/"
             }`}
           >
             {year}
@@ -170,7 +170,7 @@ export default function Memories() {
             className={`px-5 py-2 rounded-full whitespace-nowrap transition-all text-sm font-semibold border ${
               activeFilter === filter
                 ? "bg-black text-white border-black shadow-lg"
-                : "bg-white/50 backdrop-blur-2xl text-black/60 hover:text-black border-white/80 shadow-sm hover:shadow-md"
+                : "bg-card/ backdrop-blur-2xl text-foreground/ hover:text-foreground border-white/80 shadow-sm hover:shadow-md"
             }`}
           >
             {filter}
@@ -184,7 +184,7 @@ export default function Memories() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-24"
       >
-        <h2 className="text-sm font-bold tracking-widest text-black/40 uppercase mb-4 pl-2">Featured This Week</h2>
+        <h2 className="text-sm font-bold tracking-widest text-foreground/ uppercase mb-4 pl-2">Featured This Week</h2>
         <motion.div 
           whileHover={{ scale: 1.01 }}
           onClick={() => navigate(`/app/memories/${featuredMemory.id}`)}
@@ -224,7 +224,7 @@ export default function Memories() {
             viewport={{ once: true, margin: "-100px" }}
           >
             <div className="flex items-center justify-between mb-6 pl-2">
-              <h2 className="text-xl font-bold tracking-tight text-black">{cluster.title}</h2>
+              <h2 className="text-xl font-bold tracking-tight text-foreground">{cluster.title}</h2>
               <button className="text-sm font-semibold text-blue-500 hover:text-blue-600 transition-colors">Select</button>
             </div>
             

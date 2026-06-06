@@ -81,7 +81,7 @@ export default function Music() {
         <h1 className="text-5xl mb-2 tracking-tight" style={{ fontWeight: 600 }}>
           Music
         </h1>
-        <p className="text-xl text-black/50">The soundtrack of your memories</p>
+        <p className="text-xl text-foreground/">The soundtrack of your memories</p>
       </motion.div>
 
       {/* Songs That Defined Your Memories */}
@@ -102,7 +102,7 @@ export default function Music() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1 + index * 0.05 }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-white/60 backdrop-blur-xl rounded-[32px] p-6 border border-white/60 cursor-pointer group flex flex-col"
+              className="bg-card/ backdrop-blur-xl rounded-[32px] p-6 border border-white/60 cursor-pointer group flex flex-col"
               style={{
                 boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
               }}
@@ -113,13 +113,13 @@ export default function Music() {
                   alt={song.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-foreground/ group-hover:bg-foreground/ transition-colors duration-300 flex items-center justify-center">
                   <motion.div
                     initial={{ scale: 0 }}
                     whileHover={{ scale: 1 }}
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg"
+                    className="w-12 h-12 rounded-full bg-card flex items-center justify-center shadow-lg"
                   >
-                    <Play className="w-6 h-6 text-black ml-1" />
+                    <Play className="w-6 h-6 text-foreground ml-1" />
                   </motion.div>
                 </div>
               </div>
@@ -127,12 +127,12 @@ export default function Music() {
                 <h3 className="text-xl mb-1 tracking-tight" style={{ fontWeight: 600 }}>
                   {song.title}
                 </h3>
-                <p className="text-black/60 font-medium mb-3">{song.artist}</p>
+                <p className="text-foreground/ font-medium mb-3">{song.artist}</p>
                 <div className="mt-auto">
-                  <p className="text-sm font-semibold text-black/80 mb-1">{song.memories} memories</p>
-                  <p className="text-xs text-black/50 leading-tight">
+                  <p className="text-sm font-semibold text-foreground/ mb-1">{song.memories} memories</p>
+                  <p className="text-xs text-foreground/ leading-tight">
                     Most remembered with:<br/>
-                    <span className="font-medium text-black/70">{song.associatedMemory}</span>
+                    <span className="font-medium text-foreground/">{song.associatedMemory}</span>
                   </p>
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function Music() {
               <h3 className="text-sm tracking-tight truncate" style={{ fontWeight: 600 }}>
                 {album.name}
               </h3>
-              <p className="text-xs text-black/60 truncate">{album.artist}</p>
+              <p className="text-xs text-foreground/ truncate">{album.artist}</p>
             </motion.div>
           ))}
         </div>
@@ -194,7 +194,7 @@ export default function Music() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 bg-white/60 backdrop-blur-xl rounded-[24px] md:rounded-[32px] p-5 md:p-6 border border-white/60 cursor-pointer group"
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 bg-card/ backdrop-blur-xl rounded-[24px] md:rounded-[32px] p-5 md:p-6 border border-white/60 cursor-pointer group"
               style={{
                 boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.1)",
               }}
@@ -205,13 +205,13 @@ export default function Music() {
                   alt={playlist.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-foreground/ group-hover:bg-foreground/ transition-colors duration-300 flex items-center justify-center">
                   <motion.div
                     initial={{ scale: 0 }}
                     whileHover={{ scale: 1 }}
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center"
+                    className="w-12 h-12 rounded-full bg-card flex items-center justify-center"
                   >
-                    <Play className="w-6 h-6 text-black ml-1" />
+                    <Play className="w-6 h-6 text-foreground ml-1" />
                   </motion.div>
                 </div>
               </div>
@@ -219,7 +219,7 @@ export default function Music() {
                 <h3 className="text-xl md:text-2xl mb-1 md:mb-2 tracking-tight" style={{ fontWeight: 600 }}>
                   {playlist.name}
                 </h3>
-                <div className="flex flex-wrap gap-4 md:gap-6 text-black/60 text-sm md:text-base">
+                <div className="flex flex-wrap gap-4 md:gap-6 text-foreground/ text-sm md:text-base">
                   <div className="flex items-center gap-2">
                     <MusicIcon className="w-4 h-4" />
                     <span>{playlist.songs} songs</span>

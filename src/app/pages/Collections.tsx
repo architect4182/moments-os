@@ -79,7 +79,7 @@ const collections = [
 
 export default function Collections() {
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-black font-sans pb-32">
+    <div className="min-h-screen bg-background text-foreground font-sans pb-32">
       <div className="p-6 md:p-8 lg:p-16 max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -91,7 +91,7 @@ export default function Collections() {
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-2 md:mb-4">
             Collections
           </h1>
-          <p className="text-xl md:text-2xl text-black/60 font-medium">Curated albums of your favorite moments.</p>
+          <p className="text-xl md:text-2xl text-foreground/ font-medium">Curated albums of your favorite moments.</p>
         </motion.div>
 
         {/* Collections Grid */}
@@ -186,17 +186,17 @@ export default function Collections() {
                 <span className="text-4xl lg:text-5xl font-bold mb-2">89</span>
                 <span className="text-sm font-bold uppercase tracking-widest text-white/60">Collections</span>
               </div>
-              <div className="w-px h-16 bg-white/20 hidden md:block" />
+              <div className="w-px h-16 bg-card/ hidden md:block" />
               <div className="flex flex-col items-center">
                 <span className="text-4xl lg:text-5xl font-bold mb-2">412</span>
                 <span className="text-sm font-bold uppercase tracking-widest text-white/60">Memories</span>
               </div>
-              <div className="w-px h-16 bg-white/20 hidden md:block" />
+              <div className="w-px h-16 bg-card/ hidden md:block" />
               <div className="flex flex-col items-center">
                 <span className="text-4xl lg:text-5xl font-bold mb-2">53</span>
                 <span className="text-sm font-bold uppercase tracking-widest text-white/60">People</span>
               </div>
-              <div className="w-px h-16 bg-white/20 hidden md:block" />
+              <div className="w-px h-16 bg-card/ hidden md:block" />
               <div className="flex flex-col items-center">
                 <span className="text-4xl lg:text-5xl font-bold mb-2">7</span>
                 <span className="text-sm font-bold uppercase tracking-widest text-white/60">Countries</span>

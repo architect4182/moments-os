@@ -50,7 +50,7 @@ export default function Home() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <div ref={containerRef} className="pb-32 md:pb-32 bg-transparent min-h-screen text-black font-sans selection:bg-black/10">
+    <div ref={containerRef} className="pb-32 md:pb-32 bg-transparent min-h-screen text-foreground font-sans selection:bg-foreground/">
       {/* Cinematic Hero */}
       <div className="relative h-[75vh] lg:h-[85vh] w-full overflow-hidden md:rounded-[40px] mb-12 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] mx-0 md:mx-4 lg:mx-8 mt-0 md:mt-4 w-full md:w-[calc(100%-2rem)] lg:w-[calc(100%-4rem)] border-0 md:border border-white/60">
         <motion.div style={{ y, opacity }} className="absolute inset-0">
@@ -76,7 +76,7 @@ export default function Home() {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white/90 backdrop-blur-xl text-black px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3 hover:bg-white transition-colors w-max shadow-xl"
+              className="bg-card/ backdrop-blur-xl text-foreground px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3 hover:bg-card transition-colors w-max shadow-xl"
             >
               <Play className="w-5 h-5 fill-black" />
               Open Memory
@@ -93,7 +93,7 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-3xl font-semibold mb-8 tracking-tight text-black">Today in Memories</h2>
+          <h2 className="text-3xl font-semibold mb-8 tracking-tight text-foreground">Today in Memories</h2>
           <motion.div 
             whileHover={{ scale: 1.02 }}
             className="relative h-[400px] lg:h-[500px] rounded-[40px] overflow-hidden cursor-pointer group shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-white/60"
@@ -101,7 +101,7 @@ export default function Home() {
             <SafeImage src={todayMemory.image} alt="Today" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
             <div className="absolute inset-0 p-8 lg:p-12 flex flex-col justify-between text-white">
-              <div className="bg-white/20 backdrop-blur-md self-start px-5 py-2 rounded-full border border-white/30 text-white font-medium flex items-center gap-2 shadow-sm">
+              <div className="bg-card/ backdrop-blur-md self-start px-5 py-2 rounded-full border border-white/30 text-white font-medium flex items-center gap-2 shadow-sm">
                 <Calendar className="w-4 h-4" />
                 {todayMemory.date}
               </div>
@@ -125,16 +125,16 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 tracking-tight text-black">Moments Snapshot</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 tracking-tight text-foreground">Moments Snapshot</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {snapshotCards.map((card, idx) => (
               <motion.div
                 key={card.label}
                 whileHover={{ scale: 1.03, y: -5 }}
-                className="relative h-[200px] md:h-[250px] rounded-[24px] md:rounded-[32px] overflow-hidden group bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] cursor-default flex flex-col justify-end p-6 md:p-8"
+                className="relative h-[200px] md:h-[250px] rounded-[24px] md:rounded-[32px] overflow-hidden group bg-card/ backdrop-blur-2xl border border-white/80 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] cursor-default flex flex-col justify-end p-6 md:p-8"
               >
                 <span className={`text-6xl font-bold mb-2 tracking-tight ${card.color}`}>{card.value}</span>
-                <span className="text-black/60 font-medium text-lg">{card.label}</span>
+                <span className="text-foreground/ font-medium text-lg">{card.label}</span>
               </motion.div>
             ))}
           </div>
@@ -149,8 +149,8 @@ export default function Home() {
           className="w-full overflow-hidden"
         >
           <div className="flex justify-between items-end mb-6 md:mb-8 pr-4">
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-black">Recent Memories</h2>
-            <button className="text-black/50 hover:text-black flex items-center gap-1 transition-colors font-medium text-sm md:text-base">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">Recent Memories</h2>
+            <button className="text-foreground/ hover:text-foreground flex items-center gap-1 transition-colors font-medium text-sm md:text-base">
               View All <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           </div>
@@ -184,7 +184,7 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-12"
         >
-          <h2 className="text-3xl font-semibold mb-8 tracking-tight text-black">Collections</h2>
+          <h2 className="text-3xl font-semibold mb-8 tracking-tight text-foreground">Collections</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {collections.map((collection, idx) => (
               <motion.div

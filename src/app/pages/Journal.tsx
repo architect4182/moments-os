@@ -102,7 +102,7 @@ const getMoodColor = (mood: string) => {
 
 export default function Journal() {
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-black font-sans pb-32">
+    <div className="min-h-screen bg-background text-foreground font-sans pb-32">
       <div className="p-6 md:p-8 lg:p-16 max-w-5xl mx-auto">
         
         {/* Header */}
@@ -115,7 +115,7 @@ export default function Journal() {
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-2 md:mb-4">
             Journal
           </h1>
-          <p className="text-xl md:text-2xl text-black/60 font-medium">Your story, written through time.</p>
+          <p className="text-xl md:text-2xl text-foreground/ font-medium">Your story, written through time.</p>
         </motion.div>
 
         {/* Timeline by Year */}
@@ -128,12 +128,12 @@ export default function Journal() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="text-3xl md:text-4xl font-bold tracking-tight text-black/30 mb-6 md:mb-8 ml-2"
+                  className="text-3xl md:text-4xl font-bold tracking-tight text-foreground/ mb-6 md:mb-8 ml-2"
                 >
                   {year}
                 </motion.h2>
                 
-                <div className="space-y-8 pl-2 lg:pl-6 border-l-2 border-black/5">
+                <div className="space-y-8 pl-2 lg:pl-6 border-l-2 border-foreground/">
                   {yearEntries.map((entry, index) => (
                     <motion.article
                       key={entry.id}
@@ -141,11 +141,11 @@ export default function Journal() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-50px" }}
                       whileHover={{ scale: 1.01, y: -5 }}
-                      className="bg-white rounded-[24px] md:rounded-[32px] overflow-hidden border border-black/5 cursor-pointer shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] relative before:absolute before:left-[-27px] lg:before:left-[-31px] before:top-12 before:w-4 before:h-4 before:bg-white before:border-4 before:border-[#f5f5f7] before:rounded-full before:z-10"
+                      className="bg-card rounded-[24px] md:rounded-[32px] overflow-hidden border border-foreground/ cursor-pointer shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] relative before:absolute before:left-[-27px] lg:before:left-[-31px] before:top-12 before:w-4 before:h-4 before:bg-card before:border-4 before:border-[#f5f5f7] before:rounded-full before:z-10"
                     >
                       <div className="flex flex-col md:flex-row">
                         {/* Image */}
-                        <div className="md:w-2/5 aspect-[4/3] md:aspect-auto relative overflow-hidden bg-black/5">
+                        <div className="md:w-2/5 aspect-[4/3] md:aspect-auto relative overflow-hidden bg-foreground/">
                           <SafeImage
                             src={entry.image}
                             alt={entry.title}
@@ -164,7 +164,7 @@ export default function Journal() {
 
                         {/* Content */}
                         <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-black/50 font-medium mb-3 md:mb-4">
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-foreground/ font-medium mb-3 md:mb-4">
                             <div className="flex items-center gap-1.5">
                               <Calendar className="w-4 h-4" />
                               <span className="text-sm">{entry.date}</span>
@@ -178,15 +178,15 @@ export default function Journal() {
                             </div>
                           </div>
 
-                          <h2 className="text-2xl md:text-3xl mb-3 md:mb-4 tracking-tight font-bold text-black">
+                          <h2 className="text-2xl md:text-3xl mb-3 md:mb-4 tracking-tight font-bold text-foreground">
                             {entry.title}
                           </h2>
 
-                          <p className="text-base md:text-lg leading-relaxed text-black/60 mb-6 font-medium">
+                          <p className="text-base md:text-lg leading-relaxed text-foreground/ mb-6 font-medium">
                             {entry.excerpt}
                           </p>
 
-                          <div className="inline-flex items-center self-start px-4 py-1.5 bg-[#f5f5f7] rounded-full text-sm font-semibold text-black/60">
+                          <div className="inline-flex items-center self-start px-4 py-1.5 bg-background rounded-full text-sm font-semibold text-foreground/">
                             <span className="capitalize">{entry.mood}</span>
                           </div>
                         </div>
@@ -196,7 +196,7 @@ export default function Journal() {
                 </div>
 
                 {yearIndex !== Object.keys(groupedEntries).length - 1 && (
-                  <div className="mt-16 border-t border-black/5 mx-8" />
+                  <div className="mt-16 border-t border-foreground/ mx-8" />
                 )}
               </div>
           ))}

@@ -53,14 +53,14 @@ export default function PersonDetail() {
   const person = personData;
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#f5f5f7] text-black font-sans pb-32">
+    <div ref={containerRef} className="min-h-screen bg-background text-foreground font-sans pb-32">
       
       {/* Back Button Overlay */}
       <motion.button
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         onClick={() => navigate(-1)}
-        className="fixed top-8 left-8 z-50 bg-white/60 backdrop-blur-xl p-3 rounded-full shadow-lg border border-white/60 hover:bg-white text-black transition-colors"
+        className="fixed top-8 left-8 z-50 bg-card/ backdrop-blur-xl p-3 rounded-full shadow-lg border border-white/60 hover:bg-card text-foreground transition-colors"
       >
         <ChevronLeft className="w-6 h-6" />
       </motion.button>
@@ -72,14 +72,14 @@ export default function PersonDetail() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#f5f5f7] via-black/20 to-transparent" />
         </motion.div>
         
-        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-24 pb-8 md:pb-12 z-10 text-black">
+        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-24 pb-8 md:pb-12 z-10 text-foreground">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="max-w-4xl"
           >
-            <h4 className="text-black/60 text-base md:text-lg lg:text-xl font-bold tracking-widest uppercase mb-2 md:mb-4">
+            <h4 className="text-foreground/ text-base md:text-lg lg:text-xl font-bold tracking-widest uppercase mb-2 md:mb-4">
               {person.relation}
             </h4>
             <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-6 md:mb-8 leading-none">
@@ -88,25 +88,25 @@ export default function PersonDetail() {
             
             {/* Relationship Metrics */}
             <div className="flex flex-wrap gap-4">
-              <div className="bg-white/80 backdrop-blur-xl border border-white px-6 py-4 rounded-3xl shadow-sm flex items-center gap-3">
+              <div className="bg-card/ backdrop-blur-xl border border-white px-6 py-4 rounded-3xl shadow-sm flex items-center gap-3">
                 <Calendar className="w-6 h-6 text-blue-500" />
                 <div>
                   <div className="text-2xl font-bold">{person.stats.years}</div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-black/50">Years</div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-foreground/">Years</div>
                 </div>
               </div>
-              <div className="bg-white/80 backdrop-blur-xl border border-white px-6 py-4 rounded-3xl shadow-sm flex items-center gap-3">
+              <div className="bg-card/ backdrop-blur-xl border border-white px-6 py-4 rounded-3xl shadow-sm flex items-center gap-3">
                 <Plane className="w-6 h-6 text-indigo-500" />
                 <div>
                   <div className="text-2xl font-bold">{person.stats.trips}</div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-black/50">Trips</div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-foreground/">Trips</div>
                 </div>
               </div>
-              <div className="bg-white/80 backdrop-blur-xl border border-white px-6 py-4 rounded-3xl shadow-sm flex items-center gap-3">
+              <div className="bg-card/ backdrop-blur-xl border border-white px-6 py-4 rounded-3xl shadow-sm flex items-center gap-3">
                 <ImageIcon className="w-6 h-6 text-purple-500" />
                 <div>
                   <div className="text-2xl font-bold">{person.stats.memories}</div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-black/50">Memories</div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-foreground/">Memories</div>
                 </div>
               </div>
             </div>
@@ -153,15 +153,15 @@ export default function PersonDetail() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8 md:mb-12">Our Story</h2>
-          <div className="relative border-l-2 border-black/10 ml-4 lg:ml-8 space-y-12 md:space-y-16 pb-8">
+          <div className="relative border-l-2 border-foreground/ ml-4 lg:ml-8 space-y-12 md:space-y-16 pb-8">
             {person.timeline.map((item, idx) => (
               <div key={idx} className="relative pl-10 lg:pl-16">
                 {/* Timeline Dot */}
                 <div className="absolute left-[-9px] top-1 w-4 h-4 rounded-full bg-black border-4 border-[#f5f5f7]" />
                 
-                <div className="text-xl font-bold text-black/40 mb-2">{item.year}</div>
+                <div className="text-xl font-bold text-foreground/ mb-2">{item.year}</div>
                 <h3 className="text-3xl font-bold mb-4">{item.title}</h3>
-                <p className="text-xl text-black/60 mb-6 max-w-2xl">{item.description}</p>
+                <p className="text-xl text-foreground/ mb-6 max-w-2xl">{item.description}</p>
                 
                 <motion.div 
                   whileHover={{ scale: 1.02 }}
@@ -186,7 +186,7 @@ export default function PersonDetail() {
               <motion.div
                 key={idx}
                 whileHover={{ scale: 1.02 }}
-                className="relative rounded-[24px] overflow-hidden break-inside-avoid cursor-pointer shadow-sm border border-black/5"
+                className="relative rounded-[24px] overflow-hidden break-inside-avoid cursor-pointer shadow-sm border border-foreground/"
               >
                 <SafeImage src={imgUrl} alt={`Shared Memory ${idx}`} className="w-full h-auto object-cover" />
               </motion.div>

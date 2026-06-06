@@ -112,7 +112,7 @@ export default function Landing() {
             </a>
             <Button
               onClick={() => navigate("/app")}
-              className="bg-white text-black hover:bg-white/90 rounded-full px-6"
+              className="bg-card text-foreground hover:bg-card/ rounded-full px-6"
             >
               Open
             </Button>
@@ -164,13 +164,16 @@ export default function Landing() {
           >
             <Button
               onClick={() => navigate("/app")}
-              className="bg-white text-black hover:bg-white/90 rounded-full px-8 py-6 text-lg"
+              className="bg-card text-foreground hover:bg-card/ rounded-full px-8 py-6 text-lg"
             >
               Open Moments OS
             </Button>
             <Button
               variant="outline"
-              className="border-2 border-white/30 bg-white/10 backdrop-blur-xl text-white hover:bg-white/20 rounded-full px-8 py-6 text-lg"
+              onClick={() => {
+                document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="border-2 border-white/30 bg-card/ backdrop-blur-xl text-white hover:bg-card/ rounded-full px-8 py-6 text-lg"
             >
               <Play className="w-5 h-5 mr-2" />
               Watch Experience
@@ -193,7 +196,7 @@ export default function Landing() {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="px-5 py-3 md:px-8 md:py-4 rounded-full bg-white/10 backdrop-blur-2xl border border-white/20 flex items-center gap-3 shadow-2xl"
+                className="px-5 py-3 md:px-8 md:py-4 rounded-full bg-card/ backdrop-blur-2xl border border-white/20 flex items-center gap-3 shadow-2xl"
               >
                 <div className="text-xl md:text-3xl font-bold text-white">{stat.value}</div>
                 <div className="text-xs md:text-sm font-medium text-white/70 uppercase tracking-wider">{stat.label}</div>
@@ -204,7 +207,7 @@ export default function Landing() {
       </motion.section>
 
       {/* Memory Storytelling Section */}
-      <section className="py-32 px-8" id="features">
+      <section className="py-20 md:py-24 px-8" id="features">
         <div className="max-w-7xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -216,7 +219,7 @@ export default function Landing() {
             Your Story, Beautifully Told.
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6 md:gap-8 max-w-5xl mx-auto">
             {memories.map((memory, index) => (
               <motion.div
                 key={index}
@@ -225,7 +228,7 @@ export default function Landing() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="relative w-full md:w-[45%] h-[400px] md:h-[600px] rounded-[32px] md:rounded-[40px] overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] border border-white/20"
+                className="relative shrink-0 w-full h-[400px] md:w-[240px] md:h-[426px] md:aspect-[9/16] rounded-[32px] md:rounded-[32px] overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] border border-white/20"
               >
                 <SafeImage
                   src={memory.image}
@@ -233,11 +236,11 @@ export default function Landing() {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-8 left-8 right-8">
-                  <h3 className="text-3xl mb-2" style={{ fontWeight: 600 }}>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h3 className="text-xl md:text-2xl mb-1" style={{ fontWeight: 600 }}>
                     {memory.title}
                   </h3>
-                  <p className="text-white/70 text-lg">{memory.subtitle}</p>
+                  <p className="text-white/70 text-sm md:text-base">{memory.subtitle}</p>
                 </div>
               </motion.div>
             ))}
@@ -246,7 +249,7 @@ export default function Landing() {
       </section>
 
       {/* Places Section */}
-      <section className="py-32 px-8 bg-zinc-950">
+      <section className="py-20 md:py-24 px-8 bg-zinc-950">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -288,7 +291,7 @@ export default function Landing() {
                     <div className="relative">
                       <div className="w-4 h-4 rounded-full bg-blue-400 animate-ping absolute" />
                       <div className="w-4 h-4 rounded-full bg-blue-500 border-2 border-white relative" />
-                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-xl px-4 py-2 rounded-full whitespace-nowrap border border-white/20">
+                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-foreground/ backdrop-blur-xl px-4 py-2 rounded-full whitespace-nowrap border border-white/20">
                         <div className="text-sm">{pin.name}</div>
                         <div className="text-xs text-white/60">{pin.count} memories</div>
                       </div>
@@ -302,7 +305,7 @@ export default function Landing() {
       </section>
 
       {/* People Section */}
-      <section className="py-32 px-8">
+      <section className="py-20 md:py-24 px-8">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -332,10 +335,10 @@ export default function Landing() {
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full overflow-hidden border-4 border-white/10 z-10 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] group-hover:border-white/30 transition-all duration-500">
                   <SafeImage src={person.image} alt={person.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </div>
-                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[32px] p-6 pt-28 text-center h-full relative z-0 transition-colors duration-500 group-hover:bg-white/10">
+                <div className="bg-card/ backdrop-blur-xl border border-white/10 rounded-[32px] p-6 pt-28 text-center h-full relative z-0 transition-colors duration-500 group-hover:bg-card/">
                   <div className="text-3xl font-semibold mb-1 tracking-tight">{person.name}</div>
                   <div className="text-blue-400 font-medium mb-4">{person.relationship}</div>
-                  <div className="text-sm text-white/50 inline-flex items-center justify-center gap-2 bg-black/40 rounded-full px-4 py-1.5 border border-white/5">
+                  <div className="text-sm text-white/50 inline-flex items-center justify-center gap-2 bg-foreground/ rounded-full px-4 py-1.5 border border-white/5">
                     {person.memories} memories
                   </div>
                 </div>
@@ -346,7 +349,7 @@ export default function Landing() {
       </section>
 
       {/* Music Section */}
-      <section className="py-32 px-8 bg-zinc-950">
+      <section className="py-20 md:py-24 px-8 bg-zinc-950">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -379,8 +382,8 @@ export default function Landing() {
                     alt={soundtrack.title}
                     className="w-full h-full object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                  <div className="absolute bottom-4 right-4 w-14 h-14 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 border border-white/10">
+                  <div className="absolute inset-0 bg-foreground/ group-hover:bg-transparent transition-colors duration-500" />
+                  <div className="absolute bottom-4 right-4 w-14 h-14 bg-foreground/ backdrop-blur-md rounded-full flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 border border-white/10">
                     <Play className="w-6 h-6 text-white ml-1" />
                   </div>
                 </div>
@@ -399,8 +402,8 @@ export default function Landing() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-32 px-8" id="timeline">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 md:py-24 px-8" id="timeline">
+        <div className="max-w-[1400px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -429,7 +432,7 @@ export default function Landing() {
                   <div className="text-5xl md:text-7xl font-bold tracking-tighter">
                     {yearData.year}
                   </div>
-                  <div className="bg-white/10 text-white px-5 py-2 rounded-full text-sm font-medium border border-white/10 backdrop-blur-md">
+                  <div className="bg-card/ text-white px-5 py-2 rounded-full text-sm font-medium border border-white/10 backdrop-blur-md">
                     {yearData.count} Memories
                   </div>
                 </div>
@@ -456,8 +459,8 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="h-screen relative flex items-center justify-center overflow-hidden">
+      {/* Final Cinematic CTA */}
+      <section className="py-24 md:py-32 relative flex flex-col items-center justify-center overflow-hidden min-h-[50vh]">
         <div className="absolute inset-0 z-0">
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 p-4 opacity-40">
             {ctaCollageImages.map((img, i) => (
@@ -499,7 +502,7 @@ export default function Landing() {
           </p>
           <Button
             onClick={() => navigate("/app")}
-            className="bg-white text-black hover:bg-white/90 rounded-full px-12 py-8 text-xl shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)] transition-shadow duration-500"
+            className="bg-card text-foreground hover:bg-card/ rounded-full px-12 py-8 text-xl shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)] transition-shadow duration-500"
           >
             OPEN MOMENTS OS
           </Button>

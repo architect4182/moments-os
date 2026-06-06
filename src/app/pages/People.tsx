@@ -79,7 +79,7 @@ export default function People() {
       : people.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-black font-sans pb-32">
+    <div className="min-h-screen bg-background text-foreground font-sans pb-32">
       {/* Editorial Hero Section */}
       <div className="pt-20 pb-8 md:pb-12 px-6 md:px-8 lg:px-16 max-w-[1600px] mx-auto">
         <motion.div
@@ -88,8 +88,8 @@ export default function People() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-black">People</h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-black/60 font-medium mb-8 md:mb-12 leading-relaxed">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-foreground">People</h1>
+          <p className="text-lg md:text-xl lg:text-2xl text-foreground/ font-medium mb-8 md:mb-12 leading-relaxed">
             The people who shaped your story.<br/> Relive the moments you've shared.
           </p>
         </motion.div>
@@ -110,7 +110,7 @@ export default function People() {
               className={`px-6 py-3 rounded-full whitespace-nowrap transition-all text-[15px] font-semibold border ${
                 activeCategory === category
                   ? "bg-black text-white border-black shadow-lg"
-                  : "bg-white/50 backdrop-blur-2xl text-black/60 hover:text-black border-white/80 shadow-sm hover:shadow-md"
+                  : "bg-card/ backdrop-blur-2xl text-foreground/ hover:text-foreground border-white/80 shadow-sm hover:shadow-md"
               }`}
             >
               {category}
@@ -132,7 +132,7 @@ export default function People() {
               transition={{ delay: 0.1 + index * 0.05, duration: 0.5, ease: "easeOut" }}
               whileHover={{ scale: 1.02, y: -5 }}
               onClick={() => navigate(`/app/people/${person.id}`)}
-              className="relative aspect-[3/4] rounded-[32px] overflow-hidden cursor-pointer group shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] border border-white/60 bg-white"
+              className="relative aspect-[3/4] rounded-[32px] overflow-hidden cursor-pointer group shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] border border-white/60 bg-card"
             >
               <SafeImage
                 src={person.image}
@@ -143,7 +143,7 @@ export default function People() {
               
               <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end text-white">
                 <div className="flex items-center gap-2 mb-2 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                  <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/20">
+                  <span className="bg-card/ backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/20">
                     {person.relation}
                   </span>
                 </div>
